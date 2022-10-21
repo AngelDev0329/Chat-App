@@ -1,6 +1,15 @@
 import styled from "@emotion/styled";
 import { theme } from "../../styles/theme";
 
+export const Text = styled.p`
+  font-size: calc(18 / 16 * 1rem);
+`;
+
+export const Image = styled.img`
+  width: 90px;
+  margin-bottom: 20px;
+`;
+
 export const Wrapper = styled.div`
   display: flex;
 `;
