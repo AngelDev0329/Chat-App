@@ -25,7 +25,6 @@ export const Wrapper = styled.div`
 
 export const ProfileButton = styled.button`
   border: none;
-  cursor: pointer;
   background-color: transparent;
 `;
 
@@ -34,7 +33,6 @@ export const ChatButton = styled.button`
   height: 40px;
   border: none;
   display: flex;
-  cursor: pointer;
   margin-right: 20px;
   border-radius: 50%;
   align-items: center;
@@ -50,4 +48,40 @@ export const ProfilePicture = styled.img`
 
 export const SecondaryContainer = styled.div`
   position: relative;
+`;
+
+export const PrimaryContainer = styled.div`
+  position: relative;
+`;
+
+export const ShowProfileButton = styled.button`
+  display: block;
+  width: 100%;
+  color: ${theme.Black};
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: ${theme.Border};
+  }
+`;
+
+export const SignOutButton = styled.button`
+  display: flex;
+  align-items: center;
+  color: #eb4e4e;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: transparent;
+  transition: all 0.2s ease;
+  &:hover {
+    background-color: ${theme.Border};
+  }
 `;
