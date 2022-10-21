@@ -1,3 +1,3 @@
 export * from "./Home";
 export * from "./Chat";
-export * from "./SignIn";
+export * from "./SignIn/SignIn";
