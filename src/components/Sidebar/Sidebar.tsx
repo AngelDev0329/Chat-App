@@ -18,20 +18,23 @@ import {
 } from "../../library";
 import { FiLogOut, FiPlus, FiUser } from "react-icons/fi";
 import { useState } from "react";
-import { Modal, Profile } from ".";
+import { CreateConversation, Profile } from ".";
 import { Link } from "react-router-dom";
 import { Menu } from "@mui/material";
 import { signOut } from "firebase/auth";
-export function Sidebar() {
-  const currentUser = useUserStore((state) => state.currentUser);
-  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
+export function Sidebar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const currentUser = useUserStore((state) => state.currentUser);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -53,10 +56,16 @@ export function Sidebar() {
 
         <Wrapper>
           <PrimaryContainer>
-            <ChatButton aria-label="New conversation">
+            <ChatButton
+              aria-label="New conversation"
+              onClick={() => setIsModalOpen(true)}
+            >
               <FiPlus style={{ fontSize: "1.1rem" }} />
             </ChatButton>
-            <Modal />
+            <CreateConversation
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+            />
           </PrimaryContainer>
           <SecondaryContainer>
             <ProfileButton
