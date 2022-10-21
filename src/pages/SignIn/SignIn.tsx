@@ -44,7 +44,6 @@ export function SignIn() {
       <div className="container">
         <div className="gif">
           <img
-            style={{ width: "600px" }}
             src="https://cdn.dribbble.com/users/180609/screenshots/2265644/media/3c7c4ac4bebec0c6564f0bd1cf2f3039.gif"
             alt=""
           />

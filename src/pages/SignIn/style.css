@@ -1,14 +1,13 @@
 .container {
   height: 100vh;
   display: flex;
-  overflow: hidden;
   position: relative;
   align-items: center;
   justify-content: center;
 }
 
 .container .gif img {
-  width: 1000px;
+  width: 600px;
 }
 .container .wrapper h1 {
   color: #242526;
@@ -17,7 +16,6 @@
 }
 
 .container .wrapper p {
-  width: 500px;
   font-weight: 500;
   color: #4b5563;
   margin: 10px 0 20px 0;
@@ -50,10 +48,6 @@
     flex-direction: column;
   }
 
-  .container .gif img {
-    width: 600px;
-  }
-
   .container .wrapper {
     display: flex;
     padding: 30px;
@@ -71,5 +65,25 @@
   .container .wrapper p {
     text-align: center;
     font-size: calc(22 / 16 * 1rem);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container .gif img {
+    width: 500px;
+  }
+
+  .container .wrapper h1 {
+    font-size: calc(25 / 16 * 1rem);
+  }
+
+  .container .wrapper p {
+    font-size: calc(18 / 16 * 1rem);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container .gif img {
+    width: 400px;
   }
 }
