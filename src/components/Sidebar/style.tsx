@@ -23,12 +23,6 @@ export const Wrapper = styled.div`
   display: flex;
 `;
 
-export const Logo = styled.div`
-  font-weight: 500;
-  color: ${theme.Black};
-  font-size: calc(20 / 16 * 1rem);
-`;
-
 export const ProfileButton = styled.button`
   border: none;
   cursor: pointer;
@@ -52,4 +46,8 @@ export const ChatButton = styled.button`
 export const ProfilePicture = styled.img`
   width: 40px;
   border-radius: 50%;
+`;
+
+export const SecondaryContainer = styled.div`
+  position: relative;
 `;
