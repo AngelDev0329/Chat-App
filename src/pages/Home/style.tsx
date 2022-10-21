@@ -18,7 +18,6 @@ export const HomeWrapper = styled.div`
   flex-grow: 1;
   display: flex;
   height: 100vh;
-  display: flex;
   text-align: center;
   align-items: center;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import { Dialog, dividerClasses } from "@mui/material";
+import { Dialog } from "@mui/material";
 import {
   addDoc,
   collection,
@@ -13,6 +13,17 @@ import { useCollectionQuery } from "../../../hooks";
 import { firebaseDb, IMAGE_PROXY, useUserStore } from "../../../library";
 import { Spinner } from "../../Spinner/Spinner";
 
+import {
+  Error,
+  Text,
+  Users,
+  User,
+  Image,
+  Name,
+  Wrapper,
+  Button,
+  Title,
+} from "./style";
 type CreateConversationProps = {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -93,38 +104,40 @@ export function CreateConversation({
           <Spinner />
         </div>
       ) : error ? (
-        <div>
-          <p>Something went wrong</p>
-        </div>
+        <Error>
+          <Text>Something went wrong</Text>
+        </Error>
       ) : (
         <>
           {isCreating && <Spinner />}
-          <div>
+          <Users>
+            <Title>New Conversation</Title>
             {data?.docs
               .filter((doc) => doc.data().uid !== currentUser?.uid)
               .map((doc) => (
-                <div
+                <User
                   key={doc.data().uid}
                   onClick={() => handleToggle(doc.data().uid)}
                 >
                   <input
                     type="checkbox"
+                    style={{ cursor: "pointer" }}
                     checked={selected.includes(doc.data().uid)}
                     readOnly
                   />
-                  <img src={IMAGE_PROXY(doc.data().photoURL)} alt="" />
-                  <p>{doc.data().displayName}</p>
-                </div>
+                  <Image src={IMAGE_PROXY(doc.data().photoURL)} alt="" />
+                  <Name>{doc.data().displayName}</Name>
+                </User>
               ))}
-          </div>
-          <div>
-            <button
+          </Users>
+          <Wrapper>
+            <Button
               disabled={selected.length === 0}
               onClick={handleCreateConversation}
             >
               Start conversation
-            </button>
-          </div>
+            </Button>
+          </Wrapper>
         </>
       )}
     </Dialog>
