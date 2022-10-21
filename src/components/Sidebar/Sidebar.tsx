@@ -5,17 +5,36 @@ import {
   ProfileButton,
   ProfilePicture,
   ChatButton,
+  PrimaryContainer,
   SecondaryContainer,
+  ShowProfileButton,
+  SignOutButton,
 } from "./style";
-import { DEFAULT_AVATAR, IMAGE_PROXY, useUserStore } from "../../library";
-import { FiPlus } from "react-icons/fi";
+import {
+  DEFAULT_AVATAR,
+  firebaseAuth,
+  IMAGE_PROXY,
+  useUserStore,
+} from "../../library";
+import { FiLogOut, FiPlus, FiUser } from "react-icons/fi";
 import { useState } from "react";
-import { Profile } from ".";
+import { Modal, Profile } from ".";
 import { Link } from "react-router-dom";
+import { Menu } from "@mui/material";
+import { signOut } from "firebase/auth";
 export function Sidebar() {
   const currentUser = useUserStore((state) => state.currentUser);
-
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <SideBar>
@@ -33,11 +52,19 @@ export function Sidebar() {
         </Link>
 
         <Wrapper>
-          <ChatButton aria-label="New conversation">
-            <FiPlus style={{ fontSize: "1.1rem" }} />
-          </ChatButton>
+          <PrimaryContainer>
+            <ChatButton aria-label="New conversation">
+              <FiPlus style={{ fontSize: "1.1rem" }} />
+            </ChatButton>
+            <Modal />
+          </PrimaryContainer>
           <SecondaryContainer>
-            <ProfileButton onClick={() => setIsProfileOpen(true)}>
+            <ProfileButton
+              aria-controls={open ? "unauthenticated nav menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
               <ProfilePicture
                 src={
                   currentUser?.photoURL
@@ -47,6 +74,17 @@ export function Sidebar() {
                 alt=""
               />
             </ProfileButton>
+            <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
+              <ShowProfileButton onClick={() => setIsProfileOpen(true)}>
+                <FiUser style={{ marginRight: "5px", fontSize: "1.3rem" }} />{" "}
+                Profile
+              </ShowProfileButton>
+
+              <SignOutButton onClick={() => signOut(firebaseAuth)}>
+                <FiLogOut style={{ marginRight: "5px", fontSize: "1.2rem" }} />{" "}
+                Sign out
+              </SignOutButton>
+            </Menu>
             <Profile
               isProfileOpen={isProfileOpen}
               setIsProfileOpen={setIsProfileOpen}
