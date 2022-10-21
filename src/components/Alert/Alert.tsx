@@ -1,6 +1,7 @@
 import Alert from "@mui/material/Alert";
 
 import { useEffect } from "react";
+import { Error } from "./style";
 
 type AlertProps = {
   isOpen: boolean;
@@ -14,7 +15,7 @@ export const Alerts = ({
   isOpen,
   setIsOpen,
   text,
-  duration = 500000,
+  duration = 3000,
 }: AlertProps) => {
   useEffect(() => {
     if (isOpen) {
@@ -27,9 +28,11 @@ export const Alerts = ({
   return (
     <>
       {isOpen ? (
-        <Alert sx={{ width: "280px" }} severity="error">
-          {text}
-        </Alert>
+        <Error>
+          <Alert sx={{ width: "330px" }} severity="error">
+            {text}
+          </Alert>{" "}
+        </Error>
       ) : (
         ""
       )}
