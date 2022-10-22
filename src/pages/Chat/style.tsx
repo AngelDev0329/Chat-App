@@ -4,6 +4,9 @@ import { theme } from '../../styles/theme'
 
 export const Wrapper = styled.div`
   display: flex;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const ChatWrapper = styled.div`
@@ -23,10 +26,6 @@ export const Error = styled.div`
   flex-direction: column;
   justify-content: center;
   color: ${theme.LightGrey};
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `
 
 export const Text = styled.p`
@@ -45,4 +44,10 @@ export const Line = styled.div`
 
 export const Grow = styled.div`
   flex-grow: 1;
+`
+
+export const MobileHide = styled.div`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `

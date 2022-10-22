@@ -4,8 +4,8 @@ import { theme } from '../../styles/theme'
 
 export const SideBar = styled.div`
   width: 350px;
+  height: 100vh;
   border-right: 1px solid ${theme.Border};
-
   @media screen and (max-width: 768px) {
     width: 100%;
     border-right: none;
@@ -13,8 +13,9 @@ export const SideBar = styled.div`
 `
 
 export const Navbar = styled.div`
+  height: 80px;
   display: flex;
-  padding: 15px 30px;
+  padding: 0 30px;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid ${theme.Border};
@@ -58,30 +59,30 @@ export const PrimaryContainer = styled.div`
 export const ShowProfileButton = styled.button`
   display: block;
   width: 100%;
-  color: ${theme.Black};
   border: none;
-  padding: 10px 20px;
+  display: flex;
   font-size: 1rem;
   font-weight: 500;
-  background-color: transparent;
-  display: flex;
+  padding: 10px 20px;
   align-items: center;
+  color: ${theme.Black};
   transition: all 0.2s ease;
+  background-color: transparent;
   &:hover {
     background-color: ${theme.Border};
   }
 `
 
 export const SignOutButton = styled.button`
-  display: flex;
-  align-items: center;
-  color: #eb4e4e;
   border: none;
-  padding: 10px 20px;
+  display: flex;
   font-size: 1rem;
   font-weight: 500;
-  background-color: transparent;
+  color: #eb4e4e;
+  padding: 10px 20px;
+  align-items: center;
   transition: all 0.2s ease;
+  background-color: transparent;
   &:hover {
     background-color: ${theme.Border};
   }
