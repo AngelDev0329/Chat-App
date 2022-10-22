@@ -8,7 +8,7 @@ import { ChatHeader, ChatView, InputSection, Sidebar } from '../../components'
 import { useDocumentQuery } from '../../hooks/useDocumentQuery'
 import { useUserStore } from '../../library'
 import { firebaseDb } from '../../library'
-import { ChatWrapper, Wrapper } from './style'
+import { ChatWrapper, Error, Text, Image, Wrapper, Line, Grow } from './style'
 
 import ERROR_IMAGE from '/public/error.png'
 export function Chat() {
@@ -29,17 +29,17 @@ export function Chat() {
       <ChatWrapper>
         {loading ? (
           <>
-            <div></div>
-            <div></div>
+            <Line />
+            <Grow />
             <InputSection />
           </>
         ) : !conversation ||
           error ||
           !conversation.users.includes(currentUser?.uid as string) ? (
-          <div>
-            <img src={ERROR_IMAGE} alt="" />
-            <p>Conversation does not exists</p>
-          </div>
+          <Error>
+            <Image src={ERROR_IMAGE} alt="" />
+            <Text>Conversation does not exists</Text>
+          </Error>
         ) : (
           <>
             <ChatHeader conversation={conversation} />
