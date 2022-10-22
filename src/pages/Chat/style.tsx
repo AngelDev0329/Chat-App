@@ -11,10 +11,10 @@ export const Wrapper = styled.div`
 
 export const ChatWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   flex-grow: 1;
   height: 100vh;
   align-items: stretch;
+  flex-direction: column;
 `
 
 export const Error = styled.div`
@@ -38,8 +38,8 @@ export const Image = styled.img`
 `
 
 export const Line = styled.div`
-  border-bottom: 1px solid ${theme.Border};
   height: 80px;
+  border-bottom: 1px solid ${theme.Border};
 `
 
 export const Grow = styled.div`
