@@ -1,38 +1,31 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type {
-  CollectionReference,
   DocumentData,
-  Query,
-  QuerySnapshot,
+  DocumentReference,
+  DocumentSnapshot,
 } from 'firebase/firestore'
 
 import { onSnapshot } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const cache: { [key: string]: any } = {}
 
-export const useCollectionQuery: (
+export const useDocumentQuery = (
   key: string,
-  collection: CollectionReference | Query<DocumentData>
-) => { loading: boolean; error: boolean; data: QuerySnapshot | null } = (
-  key,
-  collection
+  document: DocumentReference<DocumentData>
 ) => {
-  const [data, setData] = useState<QuerySnapshot<DocumentData> | null>(
+  const [data, setData] = useState<DocumentSnapshot<DocumentData> | null>(
     cache[key] || null
   )
-
   const [loading, setLoading] = useState(!data)
   const [error, setError] = useState(false)
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      collection,
+      document,
       (snapshot) => {
         setData(snapshot)
         setLoading(false)
-        setError(false)
-        cache[key] = snapshot
       },
       (err) => {
         console.log(err)
@@ -45,8 +38,6 @@ export const useCollectionQuery: (
     return () => {
       unsubscribe()
     }
-
-    // eslint-disable-next-line
   }, [key])
 
   return { loading, error, data }

@@ -1,3 +1,15 @@
+import { Menu } from '@mui/material'
+import { signOut } from 'firebase/auth'
+import { useState } from 'react'
+import { FiLogOut, FiPlus, FiUser } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
+
+import {
+  DEFAULT_AVATAR,
+  firebaseAuth,
+  IMAGE_PROXY,
+  useUserStore,
+} from '../../library'
 import {
   SideBar,
   Navbar,
@@ -9,35 +21,25 @@ import {
   SecondaryContainer,
   ShowProfileButton,
   SignOutButton,
-} from "./style";
-import {
-  DEFAULT_AVATAR,
-  firebaseAuth,
-  IMAGE_PROXY,
-  useUserStore,
-} from "../../library";
-import { FiLogOut, FiPlus, FiUser } from "react-icons/fi";
-import { useState } from "react";
-import { CreateConversation, Profile } from ".";
-import { Link } from "react-router-dom";
-import { Menu } from "@mui/material";
-import { signOut } from "firebase/auth";
+} from './style'
+
+import { CreateConversation, Profile } from '.'
 
 export function Sidebar() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const currentUser = useUserStore((state) => state.currentUser);
-  const open = Boolean(anchorEl);
+  const currentUser = useUserStore((state) => state.currentUser)
+  const open = Boolean(anchorEl)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <SideBar>
@@ -45,10 +47,10 @@ export function Sidebar() {
         <Link
           to="/"
           style={{
-            textDecoration: "none",
-            fontSize: "calc(20 / 16 * 1rem",
+            textDecoration: 'none',
+            fontSize: 'calc(20 / 16 * 1rem',
             fontWeight: 500,
-            color: "#24292f",
+            color: '#24292f',
           }}
         >
           Sabito
@@ -60,7 +62,7 @@ export function Sidebar() {
               aria-label="New conversation"
               onClick={() => setIsModalOpen(true)}
             >
-              <FiPlus style={{ fontSize: "1.1rem" }} />
+              <FiPlus style={{ fontSize: '1.1rem' }} />
             </ChatButton>
             <CreateConversation
               isModalOpen={isModalOpen}
@@ -69,9 +71,9 @@ export function Sidebar() {
           </PrimaryContainer>
           <SecondaryContainer>
             <ProfileButton
-              aria-controls={open ? "unauthenticated nav menu" : undefined}
+              aria-controls={open ? 'unauthenticated nav menu' : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
+              aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
             >
               <ProfilePicture
@@ -85,12 +87,12 @@ export function Sidebar() {
             </ProfileButton>
             <Menu open={open} anchorEl={anchorEl} onClose={handleClose}>
               <ShowProfileButton onClick={() => setIsProfileOpen(true)}>
-                <FiUser style={{ marginRight: "5px", fontSize: "1.3rem" }} />{" "}
+                <FiUser style={{ marginRight: '5px', fontSize: '1.3rem' }} />{' '}
                 Profile
               </ShowProfileButton>
 
               <SignOutButton onClick={() => signOut(firebaseAuth)}>
-                <FiLogOut style={{ marginRight: "5px", fontSize: "1.2rem" }} />{" "}
+                <FiLogOut style={{ marginRight: '5px', fontSize: '1.2rem' }} />{' '}
                 Sign out
               </SignOutButton>
             </Menu>
@@ -102,5 +104,5 @@ export function Sidebar() {
         </Wrapper>
       </Navbar>
     </SideBar>
-  );
+  )
 }

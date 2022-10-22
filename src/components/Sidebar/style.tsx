@@ -1,5 +1,6 @@
-import styled from "@emotion/styled";
-import { theme } from "../../styles/theme";
+import styled from '@emotion/styled'
+
+import { theme } from '../../styles/theme'
 
 export const SideBar = styled.div`
   width: 350px;
@@ -9,7 +10,7 @@ export const SideBar = styled.div`
     width: 100%;
     border-right: none;
   }
-`;
+`
 
 export const Navbar = styled.div`
   display: flex;
@@ -17,16 +18,16 @@ export const Navbar = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid ${theme.Border};
-`;
+`
 
 export const Wrapper = styled.div`
   display: flex;
-`;
+`
 
 export const ProfileButton = styled.button`
   border: none;
   background-color: transparent;
-`;
+`
 
 export const ChatButton = styled.button`
   width: 40px;
@@ -39,20 +40,20 @@ export const ChatButton = styled.button`
   color: ${theme.Black};
   justify-content: center;
   background-color: ${theme.Border};
-`;
+`
 
 export const ProfilePicture = styled.img`
   width: 40px;
   border-radius: 50%;
-`;
+`
 
 export const SecondaryContainer = styled.div`
   position: relative;
-`;
+`
 
 export const PrimaryContainer = styled.div`
   position: relative;
-`;
+`
 
 export const ShowProfileButton = styled.button`
   display: block;
@@ -69,7 +70,7 @@ export const ShowProfileButton = styled.button`
   &:hover {
     background-color: ${theme.Border};
   }
-`;
+`
 
 export const SignOutButton = styled.button`
   display: flex;
@@ -84,4 +85,4 @@ export const SignOutButton = styled.button`
   &:hover {
     background-color: ${theme.Border};
   }
-`;
+`

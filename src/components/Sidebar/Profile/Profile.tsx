@@ -1,5 +1,7 @@
-import { Dialog } from "@mui/material";
-import { FiX } from "react-icons/fi";
+import { Dialog } from '@mui/material'
+import { FiX } from 'react-icons/fi'
+
+import { DEFAULT_AVATAR, IMAGE_PROXY, useUserStore } from '../../../library'
 import {
   Title,
   CloseButton,
@@ -9,19 +11,18 @@ import {
   Thick,
   Image,
   Info,
-} from "./style";
-import { DEFAULT_AVATAR, IMAGE_PROXY, useUserStore } from "../../../library";
+} from './style'
 type ProfileProps = {
-  isProfileOpen: boolean;
-  setIsProfileOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+  isProfileOpen: boolean
+  setIsProfileOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 export function Profile({ isProfileOpen, setIsProfileOpen }: ProfileProps) {
-  const currentUser = useUserStore((state) => state.currentUser);
+  const currentUser = useUserStore((state) => state.currentUser)
 
   const handleClose = () => {
-    setIsProfileOpen(false);
-  };
+    setIsProfileOpen(false)
+  }
   return (
     <Dialog onClose={handleClose} open={isProfileOpen}>
       <Title tabIndex={0}>Your Profile</Title>
@@ -44,8 +45,8 @@ export function Profile({ isProfileOpen, setIsProfileOpen }: ProfileProps) {
             <Thick>Email:</Thick> {currentUser?.email}
           </Text>
           <Text tabIndex={0}>
-            <Thick>Phone Number:</Thick>{" "}
-            {currentUser?.phoneNumber ? currentUser?.phoneNumber : "None"}
+            <Thick>Phone Number:</Thick>{' '}
+            {currentUser?.phoneNumber ? currentUser?.phoneNumber : 'None'}
           </Text>
         </Wrapper>
       </Container>
@@ -57,5 +58,5 @@ export function Profile({ isProfileOpen, setIsProfileOpen }: ProfileProps) {
         Change your google avatar or username to update it here
       </Info>
     </Dialog>
-  );
+  )
 }

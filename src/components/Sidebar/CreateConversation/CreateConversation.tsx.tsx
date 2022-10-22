@@ -1,4 +1,4 @@
-import { Dialog } from "@mui/material";
+import { Dialog } from '@mui/material'
 import {
   addDoc,
   collection,
@@ -6,13 +6,13 @@ import {
   query,
   serverTimestamp,
   where,
-} from "firebase/firestore";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCollectionQuery } from "../../../hooks";
-import { firebaseDb, IMAGE_PROXY, useUserStore } from "../../../library";
-import { Spinner } from "../../Spinner/Spinner";
+} from 'firebase/firestore'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import { useCollectionQuery } from '../../../hooks'
+import { firebaseDb, IMAGE_PROXY, useUserStore } from '../../../library'
+import { Spinner } from '../../Spinner/Spinner'
 import {
   Error,
   Text,
@@ -23,50 +23,50 @@ import {
   Wrapper,
   Button,
   Title,
-} from "./style";
+} from './style'
 type CreateConversationProps = {
-  isModalOpen: boolean;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+  isModalOpen: boolean
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 export function CreateConversation({
   isModalOpen,
   setIsModalOpen,
 }: CreateConversationProps) {
-  const [isCreating, setIsCreating] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
+  const [isCreating, setIsCreating] = useState(false)
+  const [selected, setSelected] = useState<string[]>([])
 
-  const currentUser = useUserStore((state) => state.currentUser);
+  const currentUser = useUserStore((state) => state.currentUser)
 
   const { data, error, loading } = useCollectionQuery(
-    "all-users",
-    collection(firebaseDb, "users")
-  );
+    'all-users',
+    collection(firebaseDb, 'users')
+  )
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleToggle = (uid: string) => {
     if (selected.includes(uid)) {
-      setSelected(selected.filter((item) => item !== uid));
+      setSelected(selected.filter((item) => item !== uid))
     } else {
-      setSelected([...selected, uid]);
+      setSelected([...selected, uid])
     }
-  };
+  }
 
   const handleCreateConversation = async () => {
-    setIsCreating(true);
+    setIsCreating(true)
 
-    const sorted = [...selected, currentUser?.uid].sort();
+    const sorted = [...selected, currentUser?.uid].sort()
 
     const QUERY = query(
-      collection(firebaseDb, "conversations"),
-      where("users", "==", sorted)
-    );
+      collection(firebaseDb, 'conversations'),
+      where('users', '==', sorted)
+    )
 
-    const querySnapshot = await getDocs(QUERY);
+    const querySnapshot = await getDocs(QUERY)
 
     if (querySnapshot.empty) {
-      const created = await addDoc(collection(firebaseDb, "conversations"), {
+      const created = await addDoc(collection(firebaseDb, 'conversations'), {
         users: sorted,
         group:
           sorted.length > 2
@@ -78,25 +78,25 @@ export function CreateConversation({
             : {},
         updatedAt: serverTimestamp(),
         seen: {},
-      });
+      })
 
-      setIsCreating(false);
+      setIsCreating(false)
 
-      setIsModalOpen(false);
+      setIsModalOpen(false)
 
-      navigate(`/${created.id}`);
+      navigate(`/${created.id}`)
     } else {
-      setIsModalOpen(false);
+      setIsModalOpen(false)
 
-      navigate(`/${querySnapshot.docs[0].id}`);
+      navigate(`/${querySnapshot.docs[0].id}`)
 
-      setIsCreating(false);
+      setIsCreating(false)
     }
-  };
+  }
 
   const handleClose = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
   return (
     <Dialog onClose={handleClose} open={isModalOpen}>
       {loading ? (
@@ -121,7 +121,7 @@ export function CreateConversation({
                 >
                   <input
                     type="checkbox"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: 'pointer' }}
                     checked={selected.includes(doc.data().uid)}
                     readOnly
                   />
@@ -141,5 +141,5 @@ export function CreateConversation({
         </>
       )}
     </Dialog>
-  );
+  )
 }
