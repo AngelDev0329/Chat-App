@@ -1,3 +1,107 @@
-export function ChatHeader() {
-  return <div>Header</div>
+import type { ConversationInfo } from '../../../library'
+
+import { Skeleton } from '@mui/material'
+import { useState } from 'react'
+import { GoChevronLeft } from 'react-icons/go'
+import { MdGroups, MdInfo } from 'react-icons/md'
+
+import { useUsersInfo } from '../../../hooks'
+import { IMAGE_PROXY } from '../../../library'
+import { useUserStore } from '../../../library'
+import {
+  Name,
+  Header,
+  Wrapper,
+  HomeLink,
+  Relative,
+  SingleImage,
+  ImagePrimary,
+  ImageSecondary,
+  GroupButton,
+  SettingButton,
+} from './style'
+
+type ChatHeaderProps = {
+  conversation: ConversationInfo
+}
+export function ChatHeader({ conversation }: ChatHeaderProps) {
+  const { data: users, loading } = useUsersInfo(conversation.users)
+  const currentUser = useUserStore((state) => state.currentUser)
+
+  const filtered = users?.filter((user) => user.id !== currentUser?.uid)
+
+  const [isConversationSettingsOpen, setIsConversationSettingsOpen] =
+    useState(false)
+
+  const [isGroupMembersOpen, setIsGroupMembersOpen] = useState(false)
+  const [isViewMediaOpen, setIsViewMediaOpen] = useState(false)
+
+  return (
+    <>
+      <Header>
+        <Wrapper>
+          <HomeLink href="/" aria-label="Home">
+            <GoChevronLeft />
+          </HomeLink>
+
+          {loading ? (
+            <Skeleton variant="circular" width={50} height={50} />
+          ) : (
+            <>
+              {conversation.users.length === 2 ? (
+                <SingleImage
+                  src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)}
+                  alt=""
+                />
+              ) : (
+                <>
+                  {conversation?.group?.groupImage ? (
+                    <SingleImage src={conversation.group.groupImage} alt="" />
+                  ) : (
+                    <Relative>
+                      <ImagePrimary
+                        src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)}
+                        alt=""
+                      />
+                      <ImageSecondary
+                        src={IMAGE_PROXY(filtered?.[1]?.data()?.photoURL)}
+                        alt=""
+                      />
+                    </Relative>
+                  )}
+                </>
+              )}
+            </>
+          )}
+
+          {loading ? (
+            <Skeleton width={100} height={30} sx={{ ml: '10px' }} />
+          ) : (
+            <Name>
+              {conversation.users.length > 2 && conversation?.group?.groupName
+                ? conversation.group.groupName
+                : filtered
+                    ?.map((user) => user.data()?.displayName)
+                    .slice(0, 3)
+                    .join(', ')}
+            </Name>
+          )}
+        </Wrapper>
+
+        {!loading && (
+          <Wrapper>
+            {conversation.users.length > 2 && (
+              <GroupButton onClick={() => setIsGroupMembersOpen(true)}>
+                <MdGroups />
+              </GroupButton>
+            )}
+
+            <SettingButton onClick={() => setIsConversationSettingsOpen(true)}>
+              <MdInfo />
+            </SettingButton>
+          </Wrapper>
+        )}
+      </Header>
+    </>
+  )
 }

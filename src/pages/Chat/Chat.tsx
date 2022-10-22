@@ -4,11 +4,26 @@ import { doc } from 'firebase/firestore'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { ChatHeader, ChatView, InputSection, Sidebar } from '../../components'
+import {
+  ChatHeader,
+  ChatView,
+  InputSection,
+  Sidebar,
+  Spinner,
+} from '../../components'
 import { useDocumentQuery } from '../../hooks/useDocumentQuery'
 import { useUserStore } from '../../library'
 import { firebaseDb } from '../../library'
-import { ChatWrapper, Error, Text, Image, Wrapper, Line, Grow } from './style'
+import {
+  ChatWrapper,
+  Error,
+  Text,
+  Image,
+  Wrapper,
+  Line,
+  Grow,
+  MobileHide,
+} from './style'
 
 import ERROR_IMAGE from '/public/error.png'
 export function Chat() {
@@ -25,20 +40,22 @@ export function Chat() {
 
   return (
     <Wrapper>
-      <Sidebar />
+      <MobileHide>
+        <Sidebar />
+      </MobileHide>
       <ChatWrapper>
         {loading ? (
           <>
             <Line />
             <Grow />
-            <InputSection />
+            <Spinner />
           </>
         ) : !conversation ||
           error ||
           !conversation.users.includes(currentUser?.uid as string) ? (
           <Error>
             <Image src={ERROR_IMAGE} alt="" />
-            <Text>Conversation does not exists</Text>
+            <Text>Conversation does not exist</Text>
           </Error>
         ) : (
           <>
