@@ -45,7 +45,7 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
           </HomeLink>
 
           {loading ? (
-            <Skeleton variant="circular" width={50} height={50} />
+            <Skeleton variant="circular" width={40} height={40} />
           ) : (
             <>
               {conversation.users.length === 2 ? (
@@ -75,7 +75,12 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
           )}
 
           {loading ? (
-            <Skeleton width={100} height={30} sx={{ ml: '10px' }} />
+            <Skeleton
+              width={100}
+              height={15}
+              variant="rectangular"
+              sx={{ ml: '10px' }}
+            />
           ) : (
             <Name>
               {conversation.users.length > 2 && conversation?.group?.groupName
