@@ -7,7 +7,16 @@ import { Link, useParams } from 'react-router-dom'
 import { useLastMessage, useUsersInfo } from '../../../hooks'
 import { IMAGE_PROXY } from '../../../library'
 import { useUserStore } from '../../../library'
-import { Flex, Image, LastMessage, Name, Notify } from './style'
+import {
+  Flex,
+  Image,
+  ImagePrimary,
+  ImageSecondary,
+  LastMessage,
+  Name,
+  Notify,
+  Relative,
+} from './style'
 
 import '../../../styles/index.css'
 type SelectConversationProps = {
@@ -26,11 +35,8 @@ export function SelectConversation({
 
   const { id } = useParams()
 
-  const {
-    data: lastMessage,
-    loading: lastMessageLoading,
-    error: lastMessageError,
-  } = useLastMessage(conversationId)
+  const { data: lastMessage, loading: lastMessageLoading } =
+    useLastMessage(conversationId)
 
   if (loading)
     return (
@@ -47,6 +53,8 @@ export function SelectConversation({
         </div>
       </Flex>
     )
+
+  // Duo Conversation
   if (conversation.users.length === 2)
     return (
       <Link to={`/${conversationId}`} style={{ textDecoration: 'none' }}>
@@ -54,7 +62,11 @@ export function SelectConversation({
           <Image src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)} alt="" />
           <div>
             <Name>{filtered?.[0].data()?.displayName}</Name>
-            <LastMessage>{lastMessage?.message}</LastMessage>
+            {lastMessageLoading ? (
+              <Skeleton width={100} height={15} variant="rectangular" />
+            ) : (
+              <LastMessage>{lastMessage?.message}</LastMessage>
+            )}
           </div>
           {!lastMessageLoading && (
             <>
@@ -70,5 +82,54 @@ export function SelectConversation({
         </Flex>
       </Link>
     )
-  return ''
+
+  // Group Conversation
+  return (
+    <Link to={`/${conversationId}`} style={{ textDecoration: 'none' }}>
+      <Flex className={conversationId === id ? 'active' : 'not-active'}>
+        {conversation?.group?.groupImage ? (
+          <Image src={conversation.group.groupImage} alt="" />
+        ) : (
+          <Relative>
+            <ImagePrimary
+              className={
+                conversationId === id ? 'not-active-border' : 'active-border'
+              }
+              src={IMAGE_PROXY(filtered?.[0]?.data()?.photoURL)}
+              alt=""
+            />
+            <ImageSecondary
+              src={IMAGE_PROXY(filtered?.[1]?.data()?.photoURL)}
+              alt=""
+            />
+          </Relative>
+        )}
+        <div>
+          <Name>
+            {conversation?.group?.groupName ||
+              filtered
+                ?.map((user) => user.data()?.displayName)
+                .slice(0, 3)
+                .join(', ')}
+          </Name>
+          {lastMessageLoading ? (
+            <Skeleton width={100} height={15} variant="rectangular" />
+          ) : (
+            <LastMessage>{lastMessage?.message}</LastMessage>
+          )}
+        </div>
+        {!lastMessageLoading && (
+          <>
+            {lastMessage?.lastMessageId !== null &&
+              lastMessage?.lastMessageId !==
+                conversation.seen[currentUser?.uid as string] && (
+                <Notify>
+                  <BsCircleFill />
+                </Notify>
+              )}
+          </>
+        )}
+      </Flex>
+    </Link>
+  )
 }

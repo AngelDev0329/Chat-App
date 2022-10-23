@@ -128,15 +128,12 @@ export function Sidebar() {
         </Container>
       ) : error ? (
         <Container>
-          <Text className="text-center">Something went wrong</Text>
+          <Text>Something went wrong</Text>
         </Container>
       ) : data?.empty ? (
         <Container>
-          <Text className="text-center">No conversation found</Text>
-          <SelectConversationButton
-            onClick={() => setIsModalOpen(true)}
-            className="text-primary text-center"
-          >
+          <Text>No conversation found</Text>
+          <SelectConversationButton onClick={() => setIsModalOpen(true)}>
             Create one
           </SelectConversationButton>
         </Container>
