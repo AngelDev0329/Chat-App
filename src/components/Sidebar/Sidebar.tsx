@@ -1,15 +1,21 @@
+import type { ConversationInfo } from '../../library'
+
 import { Menu } from '@mui/material'
 import { signOut } from 'firebase/auth'
+import { collection, orderBy, where, query } from 'firebase/firestore'
 import { useState } from 'react'
 import { FiLogOut, FiPlus, FiUser } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 
+import { useCollectionQuery } from '../../hooks'
 import {
   DEFAULT_AVATAR,
   firebaseAuth,
+  firebaseDb,
   IMAGE_PROXY,
   useUserStore,
 } from '../../library'
+import { Spinner } from '../Spinner/Spinner'
 import {
   SideBar,
   Navbar,
@@ -21,9 +27,12 @@ import {
   SecondaryContainer,
   ShowProfileButton,
   SignOutButton,
+  Container,
+  Text,
+  SelectConversationButton,
 } from './style'
 
-import { CreateConversation, Profile } from '.'
+import { CreateConversation, Profile, SelectConversation } from '.'
 
 export function Sidebar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -40,6 +49,15 @@ export function Sidebar() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  const { data, error, loading } = useCollectionQuery(
+    'conversations',
+    query(
+      collection(firebaseDb, 'conversations'),
+      orderBy('updatedAt', 'desc'),
+      where('users', 'array-contains', currentUser?.uid)
+    )
+  )
 
   return (
     <SideBar>
@@ -103,6 +121,36 @@ export function Sidebar() {
           </SecondaryContainer>
         </Wrapper>
       </Navbar>
+
+      {loading ? (
+        <Container>
+          <Spinner />
+        </Container>
+      ) : error ? (
+        <Container>
+          <Text className="text-center">Something went wrong</Text>
+        </Container>
+      ) : data?.empty ? (
+        <Container>
+          <Text className="text-center">No conversation found</Text>
+          <SelectConversationButton
+            onClick={() => setIsModalOpen(true)}
+            className="text-primary text-center"
+          >
+            Create one
+          </SelectConversationButton>
+        </Container>
+      ) : (
+        <>
+          {data?.docs.map((item) => (
+            <SelectConversation
+              key={item.id}
+              conversation={item.data() as ConversationInfo}
+              conversationId={item.id}
+            />
+          ))}
+        </>
+      )}
     </SideBar>
   )
 }

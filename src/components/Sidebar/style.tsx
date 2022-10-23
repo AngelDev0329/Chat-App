@@ -87,3 +87,29 @@ export const SignOutButton = styled.button`
     background-color: ${theme.Border};
   }
 `
+
+// No Convo
+
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+`
+
+export const Text = styled.p`
+  margin: 30px 0 15px 0;
+`
+export const SelectConversationButton = styled.button`
+  color: ${theme.Black};
+  border: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  background-color: ${theme.Border};
+  transition: all 0.3s ease;
+  :hover {
+    background-color: #cfd7e1;
+  }
+`
