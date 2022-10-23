@@ -16,6 +16,7 @@
 }
 
 .container .wrapper p {
+  max-width: 600px;
   font-weight: 500;
   color: #4b5563;
   margin: 10px 10px 20px 0;
