@@ -1,42 +1,42 @@
-import type { AuthProvider } from "firebase/auth";
+import type { AuthProvider } from 'firebase/auth'
 
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useState } from "react";
-import { BsGoogle } from "react-icons/bs";
-import { Navigate } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { useState } from 'react'
+import { BsGoogle } from 'react-icons/bs'
+import { Navigate } from 'react-router-dom'
 
-import { Alerts, Github } from "../../components";
-import { useQueryParams } from "../../hooks";
-import { firebaseAuth, useUserStore } from "../../library";
+import { Alerts, Github } from '../../components'
+import { useQueryParams } from '../../hooks'
+import { firebaseAuth, useUserStore } from '../../library'
 
-import "./style.css";
+import './style.css'
 
 export function SignIn() {
-  const { redirect } = useQueryParams();
+  const { redirect } = useQueryParams()
 
-  const currentUser = useUserStore((state) => state.currentUser);
+  const currentUser = useUserStore((state) => state.currentUser)
 
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   const handleSignIn = (provider: AuthProvider) => {
-    setLoading(true);
+    setLoading(true)
 
     signInWithPopup(firebaseAuth, provider)
       .then((res) => {
-        console.log(res.user);
+        console.log(res.user)
       })
       .catch((err) => {
-        setIsAlertOpen(true);
-        setError(`Error: ${err.code}`);
+        setIsAlertOpen(true)
+        setError(`Error: ${err.code}`)
       })
       .finally(() => {
-        setLoading(false);
-      });
-  };
+        setLoading(false)
+      })
+  }
 
-  if (currentUser) return <Navigate to={redirect || "/"} />;
+  if (currentUser) return <Navigate to={redirect || '/'} />
 
   return (
     <>
@@ -59,12 +59,12 @@ export function SignIn() {
             disabled={loading}
             onClick={() => handleSignIn(new GoogleAuthProvider())}
           >
-            <BsGoogle className="svg" />
+            <BsGoogle className="svg" aria-label="Sign In With Google" />
             Sign In With Google
           </button>
         </div>
         <Alerts isOpen={isAlertOpen} setIsOpen={setIsAlertOpen} text={error} />
       </div>
     </>
-  );
+  )
 }

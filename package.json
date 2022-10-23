@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.0.0",
+    "@playwright/test": "^1.27.1",
     "@types/emoji-mart": "^3.0.9",
     "@types/lodash.kebabcase": "^4.1.7",
     "@types/react": "^18.0.17",
