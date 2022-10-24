@@ -4,7 +4,7 @@ import { Dialog } from '@mui/material'
 import { useState } from 'react'
 import { FiX } from 'react-icons/fi'
 
-import { AddMembers } from './AddMembers'
+import { AddMembers } from './AddMembers/AddMembers'
 import { Admin } from './Admin/Admin'
 import { Members } from './Members/Members'
 import { Buttons, Button, CloseButton, Header, Title } from './style'
