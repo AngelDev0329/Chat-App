@@ -15,3 +15,11 @@ export type ConversationInfo = {
   }
   theme: string
 }
+
+export interface SavedUser {
+  uid: string
+  email: string | null
+  displayName: string
+  photoURL: string
+  phoneNumber: string | null
+}
