@@ -8,6 +8,7 @@ import { MdGroups, MdInfo } from 'react-icons/md'
 import { useUsersInfo } from '../../../hooks'
 import { IMAGE_PROXY } from '../../../library'
 import { useUserStore } from '../../../library'
+import { ViewGroup } from '../../Group'
 import {
   Name,
   Header,
@@ -107,6 +108,14 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
           </Wrapper>
         )}
       </Header>
+
+      {isGroupMembersOpen && (
+        <ViewGroup
+          isOpen={isGroupMembersOpen}
+          setIsOpen={setIsGroupMembersOpen}
+          conversation={conversation}
+        />
+      )}
     </>
   )
 }
