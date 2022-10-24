@@ -2,13 +2,13 @@ import type { ConversationInfo, SavedUser } from '../../..//library'
 
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { useState } from 'react'
-import { FiUserCheck, FiUserX } from 'react-icons/fi'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { firebaseDb, IMAGE_PROXY, useUserStore } from '../../..//library'
 import { useUsersInfo } from '../../../hooks'
 import { Alerts } from '../../Alert/Alert'
 import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
+import { Container, Wrapper, User, Image, Name, Button, Menu } from './style'
 
 type MembersProps = {
   conversation: ConversationInfo
@@ -67,48 +67,39 @@ export const Members = ({ conversation }: MembersProps) => {
 
   return (
     <>
-      <div>
+      <Container>
         {data
           ?.map((item) => item.data() as SavedUser)
           .map((user) => (
-            <div key={user.uid}>
-              <div>
-                <img src={IMAGE_PROXY(user.photoURL)} alt="" />
-                <h1>{user.displayName}</h1>
-              </div>
+            <Wrapper key={user.uid}>
+              <User>
+                <Image src={IMAGE_PROXY(user.photoURL)} alt="" />
+                <Name>{user.displayName}</Name>
+              </User>
 
               {conversation.group?.admins?.includes(
                 currentUser?.uid as string
               ) && (
-                <div tabIndex={0}>
-                  <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                    ellipsis{' '}
-                  </button>
-
-                  {isMenuOpen && (
-                    <div>
-                      {conversation.users.length > 3 && (
-                        <button onClick={() => handleRemoveFromGroup(user.uid)}>
-                          <FiUserX />{' '}
-                          <>
-                            {user.uid === currentUser?.uid
-                              ? 'Leave group'
-                              : 'Kick from group'}
-                          </>
-                        </button>
-                      )}
-                      {user.uid !== currentUser?.uid && (
-                        <button onClick={() => handleMakeAdmin(user.uid)}>
-                          <FiUserCheck /> Make an admin
-                        </button>
-                      )}
-                    </div>
+                <Menu>
+                  {conversation.users.length > 3 && (
+                    <Button onClick={() => handleRemoveFromGroup(user.uid)}>
+                      <>
+                        {user.uid === currentUser?.uid
+                          ? 'Leave group'
+                          : 'Kick from group'}
+                      </>
+                    </Button>
                   )}
-                </div>
+                  {user.uid !== currentUser?.uid && (
+                    <Button onClick={() => handleMakeAdmin(user.uid)}>
+                      Make an admin
+                    </Button>
+                  )}
+                </Menu>
               )}
-            </div>
+            </Wrapper>
           ))}
-      </div>
+      </Container>
 
       <Alerts
         text={alertText}
