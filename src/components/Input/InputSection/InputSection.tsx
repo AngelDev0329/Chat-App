@@ -22,7 +22,7 @@ import {
   formatFileName,
   useUserStore,
 } from '../../../library'
-import { Alerts } from '../../Alert/Alert'
+import { AlertMessage } from '../../Alert/Alert'
 import { Spinner } from '../../Spinner/Spinner'
 import {
   Container,
@@ -318,7 +318,7 @@ export function InputSection({
         </Form>
       </Container>
 
-      <Alerts
+      <AlertMessage
         isError
         text={alertText}
         isOpen={isAlertOpened}

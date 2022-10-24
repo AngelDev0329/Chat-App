@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { BsGoogle } from 'react-icons/bs'
 import { Navigate } from 'react-router-dom'
 
-import { Alerts, Github } from '../../components'
+import { AlertMessage, Github } from '../../components'
 import { useQueryParams } from '../../hooks'
 import { firebaseAuth, useUserStore } from '../../library'
 
@@ -63,7 +63,11 @@ export function SignIn() {
             Sign In With Google
           </button>
         </div>
-        <Alerts isOpen={isAlertOpen} setIsOpen={setIsAlertOpen} text={error} />
+        <AlertMessage
+          isOpen={isAlertOpen}
+          setIsOpen={setIsAlertOpen}
+          text={error}
+        />
       </div>
     </>
   )

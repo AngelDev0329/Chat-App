@@ -6,7 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { firebaseDb, IMAGE_PROXY, useUserStore } from '../../..//library'
 import { useUsersInfo } from '../../../hooks'
-import { Alerts } from '../../Alert/Alert'
+import { SuccessMessage } from '../../Alert'
+import { AlertMessage } from '../../Alert/Alert'
 import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
 import { Container, Wrapper, User, Image, Name, Button, Menu } from './style'
 
@@ -23,16 +24,19 @@ export const Members = ({ conversation }: MembersProps) => {
 
   const navigate = useNavigate()
 
-  const [isAlertOpen, setIsAlertOpen] = useState(false)
-  const [alertText, setAlertText] = useState('')
+  const [isAlertMessageOpen, setIsAlertMessageOpen] = useState(false)
+  const [isSuccessMessageOpen, setIsSuccesMessageOpen] = useState(false)
+
+  const [alertMessage, setAlertMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
 
   const handleRemoveFromGroup = (uid: string) => {
     if (
       conversation.group?.admins.length === 1 &&
       conversation.group.admins[0] === uid
     ) {
-      setAlertText('You must set another one to be an admin')
-      setIsAlertOpen(true)
+      setAlertMessage('You must set another one to be an admin')
+      setIsAlertMessageOpen(true)
     } else {
       updateDoc(doc(firebaseDb, 'conversations', conversationId as string), {
         users: arrayRemove(uid),
@@ -44,6 +48,11 @@ export const Members = ({ conversation }: MembersProps) => {
       if (currentUser?.uid === uid) {
         navigate('/')
       }
+
+      setSuccessMessage(
+        `Done kicking ${currentUser?.displayName} out of the group`
+      )
+      setIsSuccesMessageOpen(true)
     }
   }
 
@@ -53,8 +62,8 @@ export const Members = ({ conversation }: MembersProps) => {
       'group.groupImage': conversation.group?.groupImage,
       'group.groupName': conversation.group?.groupName,
     })
-    setIsAlertOpen(true)
-    setAlertText('Done making an admin')
+    setIsSuccesMessageOpen(true)
+    setSuccessMessage('Done making an admin')
   }
 
   if (loading || error)
@@ -100,10 +109,16 @@ export const Members = ({ conversation }: MembersProps) => {
           ))}
       </Container>
 
-      <Alerts
-        text={alertText}
-        isOpen={isAlertOpen}
-        setIsOpen={setIsAlertOpen}
+      <SuccessMessage
+        text={successMessage}
+        isOpen={isSuccessMessageOpen}
+        setIsOpen={setIsSuccesMessageOpen}
+      />
+
+      <AlertMessage
+        text={alertMessage}
+        isOpen={isAlertMessageOpen}
+        setIsOpen={setIsAlertMessageOpen}
       />
     </>
   )
