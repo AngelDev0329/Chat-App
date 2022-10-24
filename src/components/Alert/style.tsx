@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 export const Error = styled.div`
   top: 0;
   left: 0;
-  z-index: 20;
   width: 100%;
   height: 100%;
   display: flex;

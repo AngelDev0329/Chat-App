@@ -74,3 +74,8 @@ export const Highlight = styled.span`
   background-color: #e5f9e3;
   border: 1px solid #cdf7c9;
 `
+export const Info = styled.p`
+  font-size: 1rem;
+  text-align: center;
+  padding: 24px;
+`
