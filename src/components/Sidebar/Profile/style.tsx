@@ -14,8 +14,8 @@ export const Wrapper = styled.div`
 `
 export const Title = styled.h1`
   padding: 15px 0;
-  font-size: 1.3em;
-  font-weight: 500;
+  font-size: calc(20 / 16 * 1rem);
+  font-weight: 600;
   text-align: center;
   color: ${theme.Black};
   border-bottom: 1px solid ${theme.Border};

@@ -46,10 +46,9 @@ export const Menu = styled.div`
 `
 
 export const Button = styled.button`
-  border: none;
+  border: 1px solid #d5dee8;
   padding: 3px 10px;
   border-radius: 4px;
-  border: 1px solid #e2e8ef;
   background-color: ${theme.Border};
   display: flex;
   font-weight: 500;
@@ -62,4 +61,16 @@ export const Button = styled.button`
   :hover {
     background-color: #cfd7e1;
   }
+`
+
+export const Highlight = styled.span`
+  display: flex;
+  color: #27822b;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  align-items: center;
+  background-color: #e5f9e3;
+  border: 1px solid #cdf7c9;
 `

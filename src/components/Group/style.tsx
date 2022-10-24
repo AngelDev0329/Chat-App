@@ -11,8 +11,11 @@ export const Header = styled.div`
 `
 
 export const Title = styled.h1`
-  font-weight: 500;
-  font-size: calc(22 / 16 * 1rem);
+  font-weight: 600;
+  font-size: calc(20 / 16 * 1rem);
+  @media screen and (max-width: 390px) {
+    font-size: calc(18 / 16 * 1rem);
+  }
 `
 
 export const CloseButton = styled.button`
@@ -45,5 +48,8 @@ export const Button = styled.button`
   :nth-child(2) {
     border-right: 1px solid ${theme.Border};
     border-left: 1px solid ${theme.Border};
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 0.85rem;
   }
 `
