@@ -7,6 +7,9 @@ import { FiX } from 'react-icons/fi'
 import { AddMembers } from './AddMembers'
 import { Admin } from './Admin'
 import { Members } from './Members'
+import { Buttons, Button, CloseButton, Header, Title } from './style'
+
+import '../../styles/index.css'
 
 type ViewGroupProps = {
   isOpen: boolean
@@ -27,39 +30,45 @@ export function ViewGroup({ isOpen, setIsOpen, conversation }: ViewGroupProps) {
   return (
     <Dialog onClose={handleClose} open={isOpen}>
       <div onClick={(event) => event.stopPropagation()}>
-        <div>
-          <h1>Group Members</h1>
-          <button onClick={() => setIsOpen(false)}>
+        <Header>
+          <Title>Group Members</Title>
+          <CloseButton onClick={() => setIsOpen(false)}>
             <FiX />
-          </button>
-        </div>
+          </CloseButton>
+        </Header>
 
-        <div>
-          <button
+        <Buttons>
+          <Button
             onClick={() => setSelectedSection(Sections.members)}
             className={
-              selectedSection === Sections.members ? 'bg-dark-lighten' : ''
+              selectedSection === Sections.members
+                ? 'active-button'
+                : 'not-active-button'
             }
           >
             Members
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => setSelectedSection(Sections.admins)}
             className={
-              selectedSection === Sections.admins ? 'bg-dark-lighten' : ''
+              selectedSection === Sections.admins
+                ? 'active-button'
+                : 'not-active-button'
             }
           >
             Admins
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => setSelectedSection(Sections.addMembers)}
             className={
-              selectedSection === Sections.addMembers ? 'bg-dark-lighten' : ''
+              selectedSection === Sections.addMembers
+                ? 'active-button'
+                : 'not-active-button'
             }
           >
             Add members
-          </button>
-        </div>
+          </Button>
+        </Buttons>
         {selectedSection === Sections.members ? (
           <Members conversation={conversation} />
         ) : selectedSection === Sections.admins ? (
