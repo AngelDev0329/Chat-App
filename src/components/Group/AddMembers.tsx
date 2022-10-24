@@ -4,6 +4,6 @@ type AddMembersProps = {
   conversations: ConversationInfo
 }
 
-export function AddMembers({ conversation }: AddMembersProps) {
+export function AddMembers({ conversations }: AddMembersProps) {
   return <div>AddMembers</div>
 }
