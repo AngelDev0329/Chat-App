@@ -25,7 +25,6 @@ export const Members = ({ conversation }: MembersProps) => {
 
   const [isAlertOpen, setIsAlertOpen] = useState(false)
   const [alertText, setAlertText] = useState('')
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleRemoveFromGroup = (uid: string) => {
     if (
