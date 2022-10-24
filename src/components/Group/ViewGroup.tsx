@@ -6,7 +6,7 @@ import { FiX } from 'react-icons/fi'
 
 import { AddMembers } from './AddMembers'
 import { Admin } from './Admin'
-import { Members } from './Members'
+import { Members } from './Members/Members'
 import { Buttons, Button, CloseButton, Header, Title } from './style'
 
 import '../../styles/index.css'
