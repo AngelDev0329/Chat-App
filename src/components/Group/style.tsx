@@ -42,4 +42,8 @@ export const Button = styled.button`
   justify-content: space-between;
   border-top: 1px solid ${theme.Border};
   border-bottom: 1px solid ${theme.Border};
+  :nth-child(2) {
+    border-right: 1px solid ${theme.Border};
+    border-left: 1px solid ${theme.Border};
+  }
 `
