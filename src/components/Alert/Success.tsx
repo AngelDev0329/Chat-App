@@ -3,20 +3,19 @@ import { useEffect } from 'react'
 
 import { Error } from './style'
 
-type AlertProps = {
+type SuccessProps = {
   isOpen: boolean
   setIsOpen: (value: boolean) => void
   text: string
-  isError?: boolean
   duration?: number
 }
 
-export const AlertMessage = ({
+export const SuccessMessage = ({
   isOpen,
   setIsOpen,
   text,
   duration = 3000,
-}: AlertProps) => {
+}: SuccessProps) => {
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
@@ -29,7 +28,7 @@ export const AlertMessage = ({
     <>
       {isOpen ? (
         <Error>
-          <Alert severity="error">{text}</Alert>{' '}
+          <Alert severity="success">{text}</Alert>{' '}
         </Error>
       ) : (
         ''
