@@ -1,7 +1,15 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 
 export const Error = styled.div`
-  top: 30px;
-  z-index: 3;
-  position: absolute;
-`;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: auto;
+  position: fixed;
+  padding-top: 50px;
+  align-items: flex-start;
+  justify-content: center;
+`
