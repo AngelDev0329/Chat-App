@@ -4,7 +4,7 @@ import { theme } from '../../styles/theme'
 
 export const Header = styled.div`
   display: flex;
-  padding: 30px 0 25px;
+  padding: 20px 0;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -12,7 +12,7 @@ export const Header = styled.div`
 
 export const Title = styled.h1`
   font-weight: 500;
-  font-size: calc(24 / 16 * 1rem);
+  font-size: calc(22 / 16 * 1rem);
 `
 
 export const CloseButton = styled.button`
@@ -31,11 +31,13 @@ export const Buttons = styled.div`
 `
 
 export const Button = styled.button`
-  width: 130px;
-  padding: 8px 0;
+  width: 150px;
+  padding: 5px;
   font-size: 1rem;
+  font-weight: 500;
   border-left: none;
   border-right: none;
+  color: ${theme.DarkGrey};
   transition: all 0.3s ease;
   justify-content: space-between;
   border-top: 1px solid ${theme.Border};
