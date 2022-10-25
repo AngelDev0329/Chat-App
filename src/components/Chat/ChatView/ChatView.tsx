@@ -1,37 +1,42 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import type { ConversationInfo } from '../../../library'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { ConversationInfo, MessageItem } from '../../../library'
+import type { FC } from 'react'
 
 import {
+  collection,
+  doc,
   limitToLast,
   orderBy,
   query,
-  collection,
   updateDoc,
-  doc,
 } from 'firebase/firestore'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useParams } from 'react-router-dom'
 
 import { useCollectionQuery } from '../../../hooks'
-import { useUserStore } from '../../../library'
-import { firebaseDb } from '../../../library'
-import { Spinner } from '../../Spinner/Spinner'
+import { firebaseDb, useUserStore } from '../../../library'
+import { LeftMessage, RightMessage } from '../../Message'
+import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
+import AvatarFromId from '../AvatarFormId/AvatarFormId'
 
-type ChatViewProps = {
-  replyInfo: null
-  setReplyInfo: React.Dispatch<React.SetStateAction<null>>
-  inputSectionOffset: number
+interface ChatViewProps {
   conversation: ConversationInfo
+  inputSectionOffset: number
+  replyInfo: any
+  setReplyInfo: (value: any) => void
 }
 
-export function ChatView({
+const ChatView: FC<ChatViewProps> = ({
+  conversation,
+  inputSectionOffset,
   replyInfo,
   setReplyInfo,
-  inputSectionOffset,
-}: ChatViewProps) {
+}) => {
   const { id: conversationId } = useParams()
+
   const currentUser = useUserStore((state) => state.currentUser)
+
   const scrollBottomRef = useRef<HTMLDivElement>(null)
 
   const [limitCount, setLimitCount] = useState(10)
@@ -43,7 +48,7 @@ export function ChatView({
         firebaseDb,
         'conversations',
         conversationId as string,
-        'message'
+        'messages'
       ),
       orderBy('createdAt'),
       limitToLast(limitCount)
@@ -53,6 +58,24 @@ export function ChatView({
   const dataRef = useRef(data)
   const conversationIdRef = useRef(conversationId)
   const isWindowFocus = useRef(true)
+
+  useEffect(() => {
+    dataRef.current = data
+  }, [data])
+
+  useEffect(() => {
+    conversationIdRef.current = conversationId
+  }, [conversationId])
+
+  useEffect(() => {
+    if (isWindowFocus.current) updateSeenStatus()
+
+    scrollBottomRef.current?.scrollIntoView()
+
+    setTimeout(() => {
+      scrollBottomRef.current?.scrollIntoView()
+    }, 100)
+  }, [data?.docs?.slice(-1)?.[0]?.id || ''])
 
   const updateSeenStatus = () => {
     if (dataRef.current?.empty) return
@@ -70,30 +93,16 @@ export function ChatView({
   }
 
   useEffect(() => {
-    dataRef.current = data
-  }, [data])
-
-  useEffect(() => {
-    conversationIdRef.current = conversationId
-  }, [conversationId])
-
-  useEffect(() => {
-    if (isWindowFocus.current) updateSeenStatus()
-    scrollBottomRef.current?.scrollIntoView()
-    setTimeout(() => {
-      scrollBottomRef.current?.scrollIntoView()
-    }, 100)
-  }, [data?.docs?.slice(-1)?.[0]?.id || ''])
-
-  useEffect(() => {
     const focusHandler = () => {
       isWindowFocus.current = true
+
       updateSeenStatus()
     }
 
     const blurHandler = () => {
       isWindowFocus.current = false
     }
+
     addEventListener('focus', focusHandler)
     addEventListener('blur', blurHandler)
 
@@ -103,9 +112,75 @@ export function ChatView({
     }
   }, [])
 
+  if (loading) return <MiniSpinner />
+
+  if (error)
+    return (
+      <div className="flex-grow">
+        <p className="mt-4 text-center text-gray-400">Something went wrong</p>
+      </div>
+    )
+
+  if (data?.empty)
+    return (
+      <div className="flex-grow">
+        <p className="mt-4 text-center text-gray-400">
+          No message recently. Start chatting now.
+        </p>
+      </div>
+    )
+
   return (
-    <div
-      style={{ height: `calc(100vh - ${144 + inputSectionOffset}px)` }}
-    ></div>
+    <InfiniteScroll
+      dataLength={data?.size as number}
+      next={() => setLimitCount((prev) => prev + 10)}
+      inverse
+      hasMore={(data?.size as number) >= limitCount}
+      loader={<MiniSpinner />}
+      style={{ display: 'flex', flexDirection: 'column-reverse' }}
+      height={`calc(100vh - ${144 + inputSectionOffset}px)`}
+    >
+      <div>
+        {data?.docs
+          .map((doc) => ({ id: doc.id, ...doc.data() } as MessageItem))
+          .map((item, index) => (
+            <Fragment key={item.id}>
+              {item.sender === currentUser?.uid ? (
+                <RightMessage
+                  replyInfo={replyInfo}
+                  setReplyInfo={setReplyInfo}
+                  message={item}
+                />
+              ) : (
+                <LeftMessage
+                  replyInfo={replyInfo}
+                  setReplyInfo={setReplyInfo}
+                  message={item}
+                  index={index}
+                  docs={data?.docs}
+                  conversation={conversation}
+                />
+              )}
+              {Object.entries(conversation.seen).filter(
+                ([key, value]) => key !== currentUser?.uid && value === item.id
+              ).length > 0 && (
+                <div className="flex justify-end gap-[1px] px-8">
+                  {Object.entries(conversation.seen)
+                    .filter(
+                      ([key, value]) =>
+                        key !== currentUser?.uid && value === item.id
+                    )
+                    .map(([key]) => (
+                      <AvatarFromId key={key} uid={key} size={14} />
+                    ))}
+                </div>
+              )}
+            </Fragment>
+          ))}
+        <div ref={scrollBottomRef}></div>
+      </div>
+    </InfiniteScroll>
   )
 }
+
+export default ChatView
