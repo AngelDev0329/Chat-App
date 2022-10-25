@@ -1,10 +1,18 @@
+import { Icon } from '@iconify/react'
 import { collection, orderBy, where, query } from 'firebase/firestore'
-import { BsDownload } from 'react-icons/bs'
 import { useParams } from 'react-router-dom'
 
 import { useCollectionQuery } from '../../../hooks'
 import { firebaseDb, formatFileSize } from '../../../library'
 import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
+import {
+  FileName,
+  Info,
+  Wrapper,
+  Container,
+  FileSize,
+  FileWrapper,
+} from '../style'
 import FileIcon from './FileIcon'
 
 export function Files() {
@@ -24,38 +32,38 @@ export function Files() {
     )
   )
 
-  if (loading || error)
-    return (
-      <div className="flex h-80 items-center justify-center">
-        <MiniSpinner />
-      </div>
-    )
+  if (loading || error) return <MiniSpinner />
 
-  if (data?.empty)
-    return (
-      <div className="h-80 py-3">
-        <p className="text-center">No file found</p>
-      </div>
-    )
+  if (data?.empty) return <Info>No file found</Info>
 
   return (
-    <div>
+    <Container>
       {data?.docs.map((file) => (
-        <div key={file.id}>
-          <FileIcon extension={file.data().file.name.split('.').slice(-1)[0]} />
-          <div>
-            <h1>{file.data()?.file?.name}</h1>
-            <p>{formatFileSize(file.data()?.file?.size)}</p>
-          </div>
+        <Wrapper key={file.id}>
+          <FileWrapper>
+            <FileIcon
+              extension={file.data().file.name.split('.').slice(-1)[0]}
+            />
+            <div>
+              <FileName>{file.data()?.file?.name}</FileName>
+              <FileSize>{formatFileSize(file.data()?.file?.size)}</FileSize>
+            </div>
+          </FileWrapper>
           <a
             href={file.data().content}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <BsDownload />
+            <Icon
+              icon="ic:baseline-download"
+              style={{
+                fontSize: '1.4rem',
+                color: '#4b5563',
+              }}
+            />
           </a>
-        </div>
+        </Wrapper>
       ))}
-    </div>
+    </Container>
   )
 }
