@@ -9,6 +9,8 @@ import { useUsersInfo } from '../../../hooks'
 import { IMAGE_PROXY } from '../../../library'
 import { useUserStore } from '../../../library'
 import { ViewGroup } from '../../Group'
+import { ViewMedia } from '../../Media'
+import { ConversationSettings } from '../index'
 import {
   Name,
   Header,
@@ -109,13 +111,23 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
         )}
       </Header>
 
-      {isGroupMembersOpen && (
-        <ViewGroup
-          isOpen={isGroupMembersOpen}
-          setIsOpen={setIsGroupMembersOpen}
+      {isConversationSettingsOpen && (
+        <ConversationSettings
           conversation={conversation}
+          setMediaViewOpen={setIsViewMediaOpen}
+          setIsOpen={setIsConversationSettingsOpen}
         />
       )}
+
+      {isGroupMembersOpen && (
+        <ViewGroup
+          conversation={conversation}
+          isOpen={isGroupMembersOpen}
+          setIsOpen={setIsGroupMembersOpen}
+        />
+      )}
+
+      {isViewMediaOpen && <ViewMedia setIsOpen={setIsViewMediaOpen} />}
     </>
   )
 }
