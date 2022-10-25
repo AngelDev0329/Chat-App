@@ -49,6 +49,9 @@ export const Button = styled.button`
     border-right: 1px solid ${theme.Border};
     border-left: 1px solid ${theme.Border};
   }
+  :hover {
+    background-color: #f3f8ff;
+  }
   @media screen and (max-width: 390px) {
     font-size: 0.85rem;
   }

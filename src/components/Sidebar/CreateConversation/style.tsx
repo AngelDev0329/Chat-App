@@ -63,4 +63,8 @@ export const Button = styled.button`
   font-size: 0.9rem;
   border-radius: 4px;
   background-color: ${theme.Border};
+  transition: all 0.3s ease;
+  :hover {
+    background-color: #cfd7e1;
+  }
 `

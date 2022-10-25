@@ -1,6 +1,68 @@
+import { Dialog } from '@mui/material'
+import { useState } from 'react'
+import { FiX } from 'react-icons/fi'
+
+import '../../styles/index.css'
+import { Button, Buttons, CloseButton, Header, Title } from '../Group/style'
+import { Files } from './Files'
+import { Images } from './Images'
+
 type ViewMediaProps = {
+  isOpen: boolean
   setIsOpen: (value: boolean) => void
 }
-export function ViewMedia({ setIsOpen }: ViewMediaProps) {
-  return <div>ViewMedia</div>
+export function ViewMedia({ setIsOpen, isOpen }: ViewMediaProps) {
+  enum Sections {
+    images,
+    files,
+  }
+  const [selectedSection, setSelectedSection] = useState(Sections.images)
+
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
+  return (
+    <Dialog onClose={handleClose} open={isOpen}>
+      <div onClick={(event) => event.stopPropagation()}>
+        <Header>
+          <Title>View images and files</Title>
+          <CloseButton>
+            <FiX />
+          </CloseButton>
+        </Header>
+
+        <Buttons>
+          <Button
+            onClick={() => setSelectedSection(Sections.images)}
+            className={
+              selectedSection === Sections.files
+                ? 'not-active-button'
+                : 'active-button'
+            }
+          >
+            Images
+          </Button>
+          <Button
+            onClick={() => setSelectedSection(Sections.files)}
+            className={
+              selectedSection === Sections.files
+                ? 'active-button'
+                : 'not-active-button'
+            }
+          >
+            Files
+          </Button>
+        </Buttons>
+      </div>
+
+      {selectedSection === Sections.images ? (
+        <Images />
+      ) : selectedSection === Sections.files ? (
+        <Files />
+      ) : (
+        <></>
+      )}
+    </Dialog>
+  )
 }

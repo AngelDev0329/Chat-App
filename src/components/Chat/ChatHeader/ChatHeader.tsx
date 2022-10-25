@@ -128,7 +128,9 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
         />
       )}
 
-      {isViewMediaOpen && <ViewMedia setIsOpen={setIsViewMediaOpen} />}
+      {isViewMediaOpen && (
+        <ViewMedia setIsOpen={setIsViewMediaOpen} isOpen={isViewMediaOpen} />
+      )}
     </>
   )
 }
