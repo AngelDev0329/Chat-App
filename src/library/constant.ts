@@ -1,6 +1,9 @@
 export const DEFAULT_AVATAR =
   'https://woodfibreinsulation.co.uk/wp-content/uploads/2017/04/blank-profile-picture-973460.png'
 
+export const FILE_ICON = (extension: string) =>
+  `https://cdn.jsdelivr.net/gh/napthedev/file-icons/file/${extension}.svg`
+
 export const IMAGE_PROXY = (url: string) =>
   `https://apoqrsgtqq.cloudimg.io/${url}`
 
