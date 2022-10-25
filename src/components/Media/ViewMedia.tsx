@@ -4,8 +4,8 @@ import { FiX } from 'react-icons/fi'
 
 import '../../styles/index.css'
 import { Button, Buttons, CloseButton, Header, Title } from '../Group/style'
-import { Files } from './Files'
-import { Images } from './Images'
+import { Files } from './Files/Files'
+import Image from './Image/Images'
 
 type ViewMediaProps = {
   isOpen: boolean
@@ -57,7 +57,7 @@ export function ViewMedia({ setIsOpen, isOpen }: ViewMediaProps) {
       </div>
 
       {selectedSection === Sections.images ? (
-        <Images />
+        <Image />
       ) : selectedSection === Sections.files ? (
         <Files />
       ) : (
