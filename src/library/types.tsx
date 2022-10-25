@@ -23,3 +23,22 @@ export interface SavedUser {
   photoURL: string
   phoneNumber: string | null
 }
+
+export interface MessageItem {
+  id?: string
+  sender: string
+  content: string
+  replyTo?: string
+  file?: {
+    name: string
+    size: number
+  }
+  createdAt: {
+    seconds: number
+    nanoseconds: number
+  }
+  type: 'text' | 'image' | 'file' | 'sticker' | 'removed'
+  reactions: {
+    [key: string]: number
+  }
+}
