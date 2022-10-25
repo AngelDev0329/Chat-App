@@ -15,6 +15,7 @@ export const Header = styled.div`
   }
 `
 export const Name = styled.p`
+  font-weight: 500;
   margin-left: 15px;
 `
 
