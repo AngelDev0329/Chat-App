@@ -12,7 +12,17 @@ type FileIconProps = {
 const FileIcon = ({ extension, className }: FileIconProps) => {
   const [isError, setIsError] = useState(false)
 
-  if (isError) return <SiAdobeacrobatreader style={{ fontSize: '1rem' }} />
+  if (isError)
+    return (
+      <SiAdobeacrobatreader
+        style={{
+          fontSize: '1rem',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      />
+    )
 
   return (
     <FileImage
