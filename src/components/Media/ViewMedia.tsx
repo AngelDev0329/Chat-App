@@ -57,7 +57,7 @@ export function ViewMedia({ setIsOpen, isOpen }: ViewMediaProps) {
       </div>
 
       {selectedSection === Sections.images ? (
-        <ImageItem src={''} />
+        <ImageItem />
       ) : selectedSection === Sections.files ? (
         <Files />
       ) : (
