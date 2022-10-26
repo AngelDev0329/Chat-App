@@ -40,7 +40,6 @@ export const ChatView = ({
   const scrollBottomRef = useRef<HTMLDivElement>(null)
 
   const [limitCount, setLimitCount] = useState(10)
-
   const { data, loading, error } = useCollectionQuery(
     `conversation-data-${conversationId}-${limitCount}`,
     query(
