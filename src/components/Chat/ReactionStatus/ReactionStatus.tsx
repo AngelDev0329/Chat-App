@@ -9,6 +9,8 @@ import { IMAGE_PROXY } from '../../../library'
 import { REACTIONS_UI } from '../../../library'
 import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
 
+import './style.css'
+
 type ReactionStatusProps = {
   position: 'left' | 'right' | 'left-tab'
   message: MessageItem
@@ -29,10 +31,10 @@ export function ReactionStatus({ message, position }: ReactionStatusProps) {
         onClick={() => setIsReactionStatusOpened(true)}
         className={
           position === 'right'
-            ? 'right-8'
+            ? 'status__right'
             : position === 'left-tab'
-            ? 'left-[70px]'
-            : 'left-8'
+            ? 'status__left-seventy'
+            : 'status__left-twenty'
         }
       >
         {Object.entries(
