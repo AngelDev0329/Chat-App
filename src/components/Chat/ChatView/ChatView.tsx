@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ConversationInfo, MessageItem } from '../../../library'
-import type { FC } from 'react'
 
 import {
   collection,
@@ -19,20 +18,21 @@ import { firebaseDb, useUserStore } from '../../../library'
 import { LeftMessage, RightMessage } from '../../Message'
 import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
 import AvatarFromId from '../AvatarFormId/AvatarFormId'
+import { Grow, Image, Text, MiniWrapper } from './style'
 
-interface ChatViewProps {
+type ChatViewProps = {
   conversation: ConversationInfo
   inputSectionOffset: number
   replyInfo: any
   setReplyInfo: (value: any) => void
 }
 
-const ChatView: FC<ChatViewProps> = ({
+export const ChatView = ({
   conversation,
   inputSectionOffset,
   replyInfo,
   setReplyInfo,
-}) => {
+}: ChatViewProps) => {
   const { id: conversationId } = useParams()
 
   const currentUser = useUserStore((state) => state.currentUser)
@@ -116,18 +116,18 @@ const ChatView: FC<ChatViewProps> = ({
 
   if (error)
     return (
-      <div className="flex-grow">
-        <p className="mt-4 text-center text-gray-400">Something went wrong</p>
-      </div>
+      <Grow>
+        <Image src="/public/error.png" alt="" />
+        <Text>Something went wrong</Text>
+      </Grow>
     )
 
   if (data?.empty)
     return (
-      <div className="flex-grow">
-        <p className="mt-4 text-center text-gray-400">
-          No message recently. Start chatting now.
-        </p>
-      </div>
+      <Grow>
+        <Image src="/public/write.png" alt="" />
+        <Text>No message recently. Start chatting now.</Text>
+      </Grow>
     )
 
   return (
@@ -164,7 +164,7 @@ const ChatView: FC<ChatViewProps> = ({
               {Object.entries(conversation.seen).filter(
                 ([key, value]) => key !== currentUser?.uid && value === item.id
               ).length > 0 && (
-                <div className="flex justify-end gap-[1px] px-8">
+                <MiniWrapper>
                   {Object.entries(conversation.seen)
                     .filter(
                       ([key, value]) =>
@@ -173,7 +173,7 @@ const ChatView: FC<ChatViewProps> = ({
                     .map(([key]) => (
                       <AvatarFromId key={key} uid={key} size={14} />
                     ))}
-                </div>
+                </MiniWrapper>
               )}
             </Fragment>
           ))}
@@ -182,5 +182,3 @@ const ChatView: FC<ChatViewProps> = ({
     </InfiniteScroll>
   )
 }
-
-export default ChatView
