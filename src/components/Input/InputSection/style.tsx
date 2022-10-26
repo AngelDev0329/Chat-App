@@ -4,7 +4,6 @@ import { theme } from '../../../styles/theme'
 
 export const Container = styled.div`
   display: flex;
-  margin-top: 10px;
   padding: 15px 20px;
   align-items: center;
   justify-content: center;
