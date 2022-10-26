@@ -2,6 +2,7 @@
 import type { ConversationInfo, MessageItem } from '../../../library'
 
 import { Icon } from '@iconify/react'
+import { motion } from 'framer-motion'
 import { Fragment, useState } from 'react'
 import { BsReply } from 'react-icons/bs'
 import { FiSmile } from 'react-icons/fi'
@@ -38,7 +39,26 @@ export function LeftMessage({
   )
 
   return (
-    <div id={`message-${message.id}`}>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {
+          translateY: '20px',
+          opacity: 0,
+        },
+        visible: {
+          translateY: '0px',
+          opacity: 1,
+          transition: {
+            delay: 0.3,
+            type: 'spring',
+            duration: 0.8,
+          },
+        },
+      }}
+      id={`message-${message.id}`}
+    >
       <div className={conversation.users.length === 2 ? 'px-8' : 'px-[70px]'}>
         {!!message.replyTo && (
           <ReplyBadge messageId={message.replyTo as string} />
@@ -170,6 +190,6 @@ export function LeftMessage({
           />
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
