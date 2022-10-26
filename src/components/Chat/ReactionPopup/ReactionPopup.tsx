@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 
 import { firebaseDb, REACTIONS_UI, useUserStore } from '../../../library'
 
+import './style.css'
+
 type ReactionPopupProps = {
   position: 'left' | 'right'
   setIsOpen: (value: boolean) => void
@@ -36,7 +38,10 @@ export function ReactionPopup({
   }
 
   return (
-    <div className={position === 'left' ? 'left-8' : 'right-8'}>
+    <div
+      id="popup"
+      className={position === 'left' ? 'popup__left' : 'popup__right'}
+    >
       {Object.entries(REACTIONS_UI).map(([key, value], index) => (
         <div
           key={key}
