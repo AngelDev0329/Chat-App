@@ -4,9 +4,8 @@ import type { MessageItem } from '../../../library'
 import { Icon } from '@iconify/react'
 import { updateDoc, doc } from 'firebase/firestore'
 import { Fragment, useState } from 'react'
-import { BsFillReplyFill } from 'react-icons/bs'
-import { FaTrashAlt } from 'react-icons/fa'
-import { VscSmiley } from 'react-icons/vsc'
+import { BsReply } from 'react-icons/bs'
+import { FiSmile, FiTrash2 } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
 
 import { formatFileSize } from '../../../library'
@@ -17,6 +16,7 @@ import { useUserStore } from '../../../library'
 import { ReactionPopup, ReactionStatus, ReplyBadge } from '../../Chat'
 import FileIcon from '../../Media/Files/FileIcon'
 
+import './style.css'
 type RightMessageProps = {
   message: MessageItem
   replyInfo: any
@@ -59,6 +59,7 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
         )}
       </div>
       <div
+        id="rightMessage"
         onClick={(event) => {
           if (event.detail === 2 && message.type !== 'removed') {
             setReplyInfo(message)
@@ -70,6 +71,8 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
       >
         {message.type === 'text' ? (
           <div
+            id="rightMessage  "
+            className="rightMessage__text--link"
             onClick={(event) => event.stopPropagation()}
             title={formattedDate}
           >
@@ -86,21 +89,21 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
             ))}
           </div>
         ) : message.type === 'image' ? (
-          <img title={formattedDate} src={message.content} alt="" />
+          <div id="rightMessage">
+            <img
+              className="rightMessage__image"
+              title={formattedDate}
+              src={message.content}
+              alt=""
+            />
+          </div>
         ) : message.type === 'file' ? (
           <div
+            id="rightMessage"
+            className="rightMessage__file"
             onClick={(event) => event.stopPropagation()}
             title={formattedDate}
           >
-            <FileIcon
-              extension={message.file?.name.split('.').slice(-1)[0] as string}
-            />
-            <div>
-              <p>{message.file?.name}</p>
-
-              <p>{formatFileSize(message.file?.size as number)}</p>
-            </div>
-
             <a
               href={message.content}
               download
@@ -110,36 +113,46 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
               <Icon
                 icon="ic:baseline-download"
                 style={{
-                  fontSize: '1.4rem',
+                  fontSize: '1.5rem',
                   color: '#4b5563',
                 }}
               />
             </a>
+
+            <div className="rightMessage__file--info">
+              <p>{message.file?.name}</p>
+
+              <p>{formatFileSize(message.file?.size as number)}</p>
+            </div>
+            <FileIcon
+              extension={message.file?.name.split('.').slice(-1)[0] as string}
+            />
           </div>
         ) : (
           <div
+            id="rightMessage"
+            className="rightMessage__removed"
             onClick={(event) => event.stopPropagation()}
             title={formattedDate}
           >
             Message has been removed
           </div>
         )}
-
         {message.type !== 'removed' && (
-          <>
-            <button
-              onClick={() => setIsSelectReactionOpen(!isSelectReactionOpen)}
-            >
-              <VscSmiley />
-            </button>
-
+          <div id="rightMessage__actions">
             <button
               onClick={(event) => {
                 setReplyInfo(message)
                 event.stopPropagation()
               }}
             >
-              <BsFillReplyFill />
+              <BsReply />
+            </button>
+
+            <button
+              onClick={() => setIsSelectReactionOpen(!isSelectReactionOpen)}
+            >
+              <FiSmile />
             </button>
 
             <button
@@ -148,24 +161,22 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
                 event.stopPropagation()
               }}
             >
-              <FaTrashAlt />
+              <FiTrash2 />
             </button>
-
-            {isSelectReactionOpen && (
-              <ReactionPopup
-                position="right"
-                setIsOpen={setIsSelectReactionOpen}
-                messageId={message.id as string}
-                currentReaction={
-                  message.reactions?.[currentUser?.uid as string] || 0
-                }
-              />
-            )}
-
-            {Object.keys(message.reactions || {}).length > 0 && (
-              <ReactionStatus message={message} position="right" />
-            )}
-          </>
+          </div>
+        )}{' '}
+        {isSelectReactionOpen && (
+          <ReactionPopup
+            position="right"
+            setIsOpen={setIsSelectReactionOpen}
+            messageId={message.id as string}
+            currentReaction={
+              message.reactions?.[currentUser?.uid as string] || 0
+            }
+          />
+        )}
+        {Object.keys(message.reactions || {}).length > 0 && (
+          <ReactionStatus message={message} position="right" />
         )}
       </div>
     </div>
