@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useEffect, useRef, useState } from 'react'
+import { BsFillReplyFill } from 'react-icons/bs'
 import { FiX } from 'react-icons/fi'
 import { ImAttachment } from 'react-icons/im'
 import { RiImageAddFill } from 'react-icons/ri'
@@ -276,7 +277,36 @@ export function InputSection({
           ))}
         </div>
       )}
+      {/* {previewFiles.length === 0 && !!replyInfo && (
+        <div className="border-dark-lighten flex h-[76px] justify-between border-t p-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <BsFillReplyFill/>
+              <p>
+                Replying
+                {currentUser?.uid === replyInfo.sender ? ' to yourself' : ''}
+              </p>
+            </div>
+            {replyInfo.type === 'text' ? (
+              <p className="max-w-[calc(100vw-65px)] overflow-hidden text-ellipsis whitespace-nowrap md:max-w-[calc(100vw-420px)]">
+                {replyInfo.content}
+              </p>
+            ) : replyInfo.type === 'image' ? (
+              'An image'
+            ) : replyInfo.type === 'file' ? (
+              'A file'
+            ) : replyInfo.type === 'sticker' ? (
+              'A sticker'
+            ) : (
+              'Message has been removed'
+            )}
+          </div>
 
+          <button onClick={() => setReplyInfo && setReplyInfo(null)}>
+            <i className="bx bx-x text-3xl"></i>
+          </button>
+        </div>
+      )} */}
       <Container>
         <ImageButton onClick={() => imageInputRef.current?.click()}>
           <RiImageAddFill />

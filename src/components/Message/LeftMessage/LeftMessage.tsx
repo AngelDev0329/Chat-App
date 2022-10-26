@@ -17,5 +17,5 @@ export function LeftMessage({
   docs,
   setReplyInfo,
 }: LeftMessageProps) {
-  return <div>RightMessage</div>
+  return <div>LeftMessage</div>
 }
