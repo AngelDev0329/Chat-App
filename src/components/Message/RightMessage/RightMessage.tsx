@@ -15,7 +15,6 @@ import { formatDate } from '../../../library'
 import { firebaseDb } from '../../../library'
 import { useUserStore } from '../../../library'
 import { ReactionPopup, ReactionStatus, ReplyBadge } from '../../Chat'
-import ClickAwayListener from '../../ClickAwayListener'
 import FileIcon from '../../Media/Files/FileIcon'
 
 type RightMessageProps = {
@@ -128,7 +127,9 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
 
         {message.type !== 'removed' && (
           <>
-            <button onClick={() => setIsSelectReactionOpen(true)}>
+            <button
+              onClick={() => setIsSelectReactionOpen(!isSelectReactionOpen)}
+            >
               <VscSmiley />
             </button>
 
@@ -151,21 +152,14 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
             </button>
 
             {isSelectReactionOpen && (
-              <ClickAwayListener
-                onClickAway={() => setIsSelectReactionOpen(false)}
-              >
-                {(ref) => (
-                  <ReactionPopup
-                    position="right"
-                    forwardedRef={ref}
-                    setIsOpen={setIsSelectReactionOpen}
-                    messageId={message.id as string}
-                    currentReaction={
-                      message.reactions?.[currentUser?.uid as string] || 0
-                    }
-                  />
-                )}
-              </ClickAwayListener>
+              <ReactionPopup
+                position="right"
+                setIsOpen={setIsSelectReactionOpen}
+                messageId={message.id as string}
+                currentReaction={
+                  message.reactions?.[currentUser?.uid as string] || 0
+                }
+              />
             )}
 
             {Object.keys(message.reactions || {}).length > 0 && (
