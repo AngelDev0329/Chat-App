@@ -3,14 +3,16 @@ import type { ConversationInfo, MessageItem } from '../../../library'
 
 import { Icon } from '@iconify/react'
 import { Fragment, useState } from 'react'
-import { BsFillReplyFill } from 'react-icons/bs'
-import { VscSmiley } from 'react-icons/vsc'
+import { BsReply } from 'react-icons/bs'
+import { FiSmile } from 'react-icons/fi'
 
 import { formatFileSize, splitLinkFromMessage } from '../../../library'
 import { formatDate, useUserStore } from '../../../library'
 import { ReactionPopup, ReactionStatus, ReplyBadge } from '../../Chat'
 import AvatarFromId from '../../Chat/AvatarFormId/AvatarFormId'
 import FileIcon from '../../Media/Files/FileIcon'
+
+import './style.css'
 
 type LeftMessageProps = {
   message: MessageItem
@@ -43,22 +45,21 @@ export function LeftMessage({
         )}
       </div>
       <div
+        id="leftMessage"
         onClick={(event) => {
           if (event.detail === 2 && message.type !== 'removed') {
             setReplyInfo(message)
           }
         }}
         className={
-          Object.keys(message.reactions || {}).length > 0 ? 'mb-2' : ''
+          Object.keys(message.reactions || {}).length > 0 ? 'util__mb' : ''
         }
       >
         {conversation.users.length > 2 && (
-          <div onClick={(event) => event.stopPropagation()}>
-            <div>
-              {docs[index - 1]?.data()?.sender !== message.sender && (
-                <AvatarFromId uid={message.sender} />
-              )}
-            </div>
+          <div id="leftMessage" onClick={(event) => event.stopPropagation()}>
+            {docs[index - 1]?.data()?.sender !== message.sender && (
+              <AvatarFromId uid={message.sender} />
+            )}
           </div>
         )}
 
@@ -66,7 +67,9 @@ export function LeftMessage({
           <div
             onClick={(event) => event.stopPropagation()}
             title={formattedDate}
-            className={conversation.users.length === 2 ? 'bom' : ''}
+            className={`leftMessage__text--link ${
+              conversation.users.length === 2 ? 'util__fix' : ''
+            }`}
           >
             {splitLinkFromMessage(message.content).map((item, index) => (
               <Fragment key={index}>
@@ -81,25 +84,33 @@ export function LeftMessage({
             ))}
           </div>
         ) : message.type === 'image' ? (
-          <img
-            onClick={(event) => {
-              event.stopPropagation()
-            }}
-            title={formattedDate}
-            src={message.content}
-            alt=""
-          />
+          <div id="leftMessage">
+            <img
+              className="leftMessage__image"
+              onClick={(event) => {
+                event.stopPropagation()
+              }}
+              title={formattedDate}
+              src={message.content}
+              alt=""
+            />
+          </div>
         ) : message.type === 'file' ? (
-          <div onClick={(e) => e.stopPropagation()} title={formattedDate}>
+          <div
+            id="leftMessage"
+            className="leftMessage__file"
+            onClick={(event) => event.stopPropagation()}
+            title={formattedDate}
+          >
+            {' '}
             <FileIcon
               extension={message.file?.name.split('.').slice(-1)[0] as string}
             />
-            <div>
+            <div className="leftMessage__file--info">
               <p>{message.file?.name}</p>
 
               <p>{formatFileSize(message.file?.size as number)}</p>
             </div>
-
             <a
               href={message.content}
               download
@@ -109,22 +120,27 @@ export function LeftMessage({
               <Icon
                 icon="ic:baseline-download"
                 style={{
-                  fontSize: '1.4rem',
+                  fontSize: '1.5rem',
                   color: '#4b5563',
                 }}
-              />{' '}
+              />
             </a>
           </div>
         ) : (
-          <div onClick={(e) => e.stopPropagation()} title={formattedDate}>
+          <div
+            id="leftMessage"
+            className="leftMessage__removed"
+            onClick={(e) => e.stopPropagation()}
+            title={formattedDate}
+          >
             Message has been removed
           </div>
         )}
 
         {message.type !== 'removed' && (
-          <>
+          <div id="leftMessage__actions">
             <button onClick={() => setIsSelectReactionOpen(true)}>
-              <VscSmiley />
+              <FiSmile />
             </button>
             <button
               onClick={(e) => {
@@ -132,7 +148,7 @@ export function LeftMessage({
                 e.stopPropagation()
               }}
             >
-              <BsFillReplyFill />
+              <BsReply />
             </button>
 
             {isSelectReactionOpen && (
@@ -145,7 +161,7 @@ export function LeftMessage({
                 }
               />
             )}
-          </>
+          </div>
         )}
         {Object.keys(message.reactions || {}).length > 0 && (
           <ReactionStatus
