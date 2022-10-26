@@ -76,6 +76,10 @@ button:disabled {
   margin-bottom: 8px;
 }
 
+.no-scrollbar {
+  background-color: #f8f8f8;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

@@ -197,7 +197,7 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
         )}
         {Object.keys(message.reactions || {}).length > 0 && (
           <ReactionStatus message={message} position="right" />
-        )}
+        )}{' '}
       </div>
     </motion.div>
   )

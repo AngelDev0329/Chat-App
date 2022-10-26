@@ -51,7 +51,7 @@ export function LeftMessage({
           translateY: '0px',
           opacity: 1,
           transition: {
-            delay: 0.3,
+            delay: 0.2,
             type: 'spring',
             duration: 0.8,
           },
@@ -82,7 +82,6 @@ export function LeftMessage({
             )}
           </div>
         )}
-
         {message.type === 'text' ? (
           <div
             onClick={(event) => event.stopPropagation()}
@@ -156,7 +155,6 @@ export function LeftMessage({
             Message has been removed
           </div>
         )}
-
         {message.type !== 'removed' && (
           <div id="leftMessage__actions">
             <button onClick={() => setIsSelectReactionOpen(true)}>
@@ -170,18 +168,17 @@ export function LeftMessage({
             >
               <BsReply />
             </button>
-
-            {isSelectReactionOpen && (
-              <ReactionPopup
-                position={'left'}
-                setIsOpen={setIsSelectReactionOpen}
-                messageId={message.id as string}
-                currentReaction={
-                  message.reactions?.[currentUser?.uid as string] || 0
-                }
-              />
-            )}
           </div>
+        )}{' '}
+        {isSelectReactionOpen && (
+          <ReactionPopup
+            position={'left'}
+            setIsOpen={setIsSelectReactionOpen}
+            messageId={message.id as string}
+            currentReaction={
+              message.reactions?.[currentUser?.uid as string] || 0
+            }
+          />
         )}
         {Object.keys(message.reactions || {}).length > 0 && (
           <ReactionStatus
