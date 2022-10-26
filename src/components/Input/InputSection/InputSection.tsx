@@ -17,6 +17,7 @@ import { ImAttachment } from 'react-icons/im'
 import { RiImageAddFill } from 'react-icons/ri'
 import { useParams } from 'react-router-dom'
 
+import { MiniSpinner } from '../..'
 import {
   firebaseDb,
   firebaseStorage,
@@ -25,7 +26,6 @@ import {
 } from '../../../library'
 import { AlertMessage } from '../../Alert/Alert'
 import { CloseButton } from '../../Group/style'
-import { Spinner } from '../../Spinner/Spinner'
 import {
   Container,
   Form,
@@ -334,7 +334,9 @@ export function InputSection({
             />
           </InputWrapper>
           {fileUploading ? (
-            <Spinner />
+            <SendButton>
+              <MiniSpinner />
+            </SendButton>
           ) : (
             <SendButton>
               <Icon icon="heroicons:paper-airplane-solid" />
