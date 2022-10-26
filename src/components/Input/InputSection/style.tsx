@@ -88,3 +88,44 @@ export const Title = styled.div`
   color: ${theme.Black};
   font-size: calc(30 / 16 * 1rem);
 `
+
+// Reply
+
+export const ReplyContainer = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 10px 30px 0 30px;
+  justify-content: space-between;
+  border-top: 1px solid ${theme.Border};
+`
+
+export const CloseButton = styled.button`
+  top: 10px;
+  right: 10px;
+  border: none;
+  position: absolute;
+  color: ${theme.DarkGrey};
+  background-color: transparent;
+`
+
+export const ReplyTitle = styled.div`
+  display: flex;
+  font-weight: 500;
+`
+
+export const ReplyText = styled.p`
+  color: ${theme.DarkGrey};
+`
+
+export const Text = styled.p`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: ${theme.DarkGrey};
+  max-width: calc(100vw - 420px);
+
+  @media screen and (max-width: 768px) {
+    max-width: calc(100vw - 65px);
+  }
+`

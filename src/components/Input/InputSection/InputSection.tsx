@@ -24,6 +24,7 @@ import {
   useUserStore,
 } from '../../../library'
 import { AlertMessage } from '../../Alert/Alert'
+import { CloseButton } from '../../Group/style'
 import { Spinner } from '../../Spinner/Spinner'
 import {
   Container,
@@ -35,6 +36,10 @@ import {
   SendButton,
   DragFile,
   Title,
+  ReplyContainer,
+  ReplyTitle,
+  ReplyText,
+  Text,
 } from './style'
 
 type InputHeaderProps = {
@@ -255,58 +260,42 @@ export function InputSection({
     <>
       {fileDragging && (
         <DragFile>
-          <Title className="text-3xl">Drop file to send</Title>
+          <Title>Drop file to send</Title>
         </DragFile>
       )}
 
-      {previewFiles.length > 0 && (
-        <div>
-          {previewFiles.map((preview) => (
-            <div key={preview} className="relative">
-              <img className="h-28 w-28 object-cover" src={preview} alt="" />
-              <button
-                onClick={() =>
-                  setPreviewFiles(
-                    previewFiles.filter((item) => item !== preview)
-                  )
-                }
-              >
-                <FiX />
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-      {/* {previewFiles.length === 0 && !!replyInfo && (
-        <div className="border-dark-lighten flex h-[76px] justify-between border-t p-4">
+      {previewFiles.length === 0 && !!replyInfo && (
+        <ReplyContainer>
           <div>
-            <div className="flex items-center gap-2">
-              <BsFillReplyFill/>
+            <ReplyTitle>
+              <BsFillReplyFill
+                style={{
+                  marginRight: '5px',
+                  fontSize: '1.3rem',
+                  color: '#24292f',
+                }}
+              />
               <p>
                 Replying
                 {currentUser?.uid === replyInfo.sender ? ' to yourself' : ''}
               </p>
-            </div>
+            </ReplyTitle>
             {replyInfo.type === 'text' ? (
-              <p className="max-w-[calc(100vw-65px)] overflow-hidden text-ellipsis whitespace-nowrap md:max-w-[calc(100vw-420px)]">
-                {replyInfo.content}
-              </p>
+              <Text>{replyInfo.content}</Text>
             ) : replyInfo.type === 'image' ? (
-              'An image'
+              <ReplyText>An image</ReplyText>
             ) : replyInfo.type === 'file' ? (
-              'A file'
-            ) : replyInfo.type === 'sticker' ? (
-              'A sticker'
+              <ReplyText>A file</ReplyText>
             ) : (
               'Message has been removed'
             )}
           </div>
 
-          <button onClick={() => setReplyInfo && setReplyInfo(null)}>
-            <i className="bx bx-x text-3xl"></i>
-          </button>
-        </div>
-      )} */}
+          <CloseButton onClick={() => setReplyInfo && setReplyInfo(null)}>
+            <FiX style={{ fontSize: '1rem' }} />
+          </CloseButton>
+        </ReplyContainer>
+      )}
       <Container>
         <ImageButton onClick={() => imageInputRef.current?.click()}>
           <RiImageAddFill />
@@ -321,7 +310,13 @@ export function InputSection({
         <FileButton onClick={() => fileInputRef.current?.click()}>
           <ImAttachment />
         </FileButton>
-        <input ref={fileInputRef} hidden type="file" />
+        <input
+          ref={fileInputRef}
+          hidden
+          className="hidden"
+          type="file"
+          onChange={handleFileInputChange}
+        />
 
         <Form onSubmit={handleFormSubmit}>
           <InputWrapper>
