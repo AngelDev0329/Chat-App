@@ -94,7 +94,7 @@ export const ReplyContainer = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  padding: 10px 30px 0 30px;
+  padding: 15px 30px;
   justify-content: space-between;
   border-top: 1px solid ${theme.Border};
 `
