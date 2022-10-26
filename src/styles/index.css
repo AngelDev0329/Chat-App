@@ -71,3 +71,7 @@ button:disabled {
 .not-active-button {
   background-color: transparent;
 }
+
+.extra {
+  margin-bottom: 8px;
+}
