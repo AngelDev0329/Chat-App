@@ -26,7 +26,6 @@ type RightMessageProps = {
 
 export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
   const [isSelectReactionOpen, setIsSelectReactionOpen] = useState(false)
-  const [isImageViewOpen, setIsImageViewOpen] = useState(false)
 
   const { id: conversationId } = useParams()
 
@@ -38,7 +37,7 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
         firebaseDb,
         'conversations',
         conversationId as string,
-        'message',
+        'messages',
         messageId
       ),
       {
@@ -115,7 +114,7 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
                   fontSize: '1.4rem',
                   color: '#4b5563',
                 }}
-              />{' '}
+              />
             </a>
           </div>
         ) : (
