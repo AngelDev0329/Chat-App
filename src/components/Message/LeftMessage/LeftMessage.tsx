@@ -10,7 +10,6 @@ import { formatFileSize, splitLinkFromMessage } from '../../../library'
 import { formatDate, useUserStore } from '../../../library'
 import { ReactionPopup, ReactionStatus, ReplyBadge } from '../../Chat'
 import AvatarFromId from '../../Chat/AvatarFormId/AvatarFormId'
-import ClickAwayListener from '../../ClickAwayListener'
 import FileIcon from '../../Media/Files/FileIcon'
 
 type LeftMessageProps = {
@@ -31,8 +30,6 @@ export function LeftMessage({
 }: LeftMessageProps) {
   const [isSelectReactionOpen, setIsSelectReactionOpen] = useState(false)
   const currentUser = useUserStore((state) => state.currentUser)
-
-  const [isImageViewOpened, setIsImageViewOpened] = useState(false)
 
   const formattedDate = formatDate(
     message.createdAt.seconds ? message.createdAt.seconds * 1000 : Date.now()
@@ -86,7 +83,6 @@ export function LeftMessage({
         ) : message.type === 'image' ? (
           <img
             onClick={(event) => {
-              setIsImageViewOpened(true)
               event.stopPropagation()
             }}
             title={formattedDate}
@@ -140,21 +136,14 @@ export function LeftMessage({
             </button>
 
             {isSelectReactionOpen && (
-              <ClickAwayListener
-                onClickAway={() => setIsSelectReactionOpen(false)}
-              >
-                {(ref) => (
-                  <ReactionPopup
-                    position={'left'}
-                    forwardedRef={ref}
-                    setIsOpen={setIsSelectReactionOpen}
-                    messageId={message.id as string}
-                    currentReaction={
-                      message.reactions?.[currentUser?.uid as string] || 0
-                    }
-                  />
-                )}
-              </ClickAwayListener>
+              <ReactionPopup
+                position={'left'}
+                setIsOpen={setIsSelectReactionOpen}
+                messageId={message.id as string}
+                currentReaction={
+                  message.reactions?.[currentUser?.uid as string] || 0
+                }
+              />
             )}
           </>
         )}
