@@ -75,3 +75,7 @@ button:disabled {
 .extra {
   margin-bottom: 8px;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

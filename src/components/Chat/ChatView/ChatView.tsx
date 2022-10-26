@@ -131,6 +131,7 @@ export const ChatView = ({
 
   return (
     <InfiniteScroll
+      className="no-scrollbar"
       dataLength={data?.size as number}
       next={() => setLimitCount((prev) => prev + 10)}
       inverse
@@ -170,7 +171,7 @@ export const ChatView = ({
                         key !== currentUser?.uid && value === item.id
                     )
                     .map(([key]) => (
-                      <AvatarFromId key={key} uid={key} size={14} />
+                      <AvatarFromId key={key} uid={key} size={20} />
                     ))}
                 </MiniWrapper>
               )}

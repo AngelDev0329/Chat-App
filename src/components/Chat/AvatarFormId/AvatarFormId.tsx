@@ -2,6 +2,7 @@ import { Skeleton } from '@mui/material'
 
 import { useUsersInfo } from '../../../hooks'
 import { DEFAULT_AVATAR, IMAGE_PROXY } from '../../../library'
+import { Image } from './style'
 
 type AvatarFromIdProps = {
   uid: string
@@ -17,11 +18,11 @@ const AvatarFromId = ({ uid, size = 30 }: AvatarFromIdProps) => {
     return <img src={DEFAULT_AVATAR} style={{ width: size, height: size }} />
 
   return (
-    <img
+    <Image
       title={data?.[0].data()?.displayName}
       style={{ width: size, height: size }}
       src={IMAGE_PROXY(data?.[0].data()?.photoURL)}
-    ></img>
+    ></Image>
   )
 }
 
