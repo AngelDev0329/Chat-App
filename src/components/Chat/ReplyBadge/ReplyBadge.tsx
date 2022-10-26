@@ -41,8 +41,6 @@ export function ReplyBadge({ messageId }: ReplyBadgeProps) {
           'An image'
         ) : data?.data()?.type === 'file' ? (
           'A file'
-        ) : data?.data()?.type === 'sticker' ? (
-          'A sticker'
         ) : (
           'Message has been removed'
         )}
