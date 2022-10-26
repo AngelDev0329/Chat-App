@@ -16,15 +16,6 @@ export const formatFileName = (name: string) => {
   )}.${extension}`
 }
 
-// https://gist.github.com/zentala/1e6f72438796d74531803cc3833c039c
-export const formatFileSize = (size: number) => {
-  const i = Math.floor(Math.log(size) / Math.log(1024))
-
-  return `${(size / Math.pow(1024, i)).toFixed(1)} ${
-    ['B', 'KB', 'MB', 'GB', 'TB'][i]
-  }`
-}
-
 export const formatDate = (timestamp: number) => {
   const date = new Date(timestamp)
   const formatter = dayjs(date)
@@ -38,4 +29,35 @@ export const formatDate = (timestamp: number) => {
     return formatter.format('MMM DD h:mm A')
 
   return formatter.format('DD MMM YYYY h:mm A')
+}
+
+// https://gist.github.com/zentala/1e6f72438796d74531803cc3833c039c
+export const formatFileSize = (size: number) => {
+  const i = Math.floor(Math.log(size) / Math.log(1024))
+
+  return `${(size / Math.pow(1024, i)).toFixed(1)} ${
+    ['B', 'KB', 'MB', 'GB', 'TB'][i]
+  }`
+}
+
+/* eslint-disable no-useless-escape */
+export const splitLinkFromMessage = (message: string) => {
+  const URL_REGEX =
+    /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/gm
+
+  const result = message.split(' ').reduce((acc, item) => {
+    const isURL = URL_REGEX.test(item)
+    if (isURL) acc.push({ link: item })
+    else {
+      if (typeof acc.slice(-1)[0] === 'string') {
+        acc = [...acc.slice(0, -1), `${acc.slice(-1)[0]} ${item}`]
+      } else {
+        acc.push(item)
+      }
+    }
+
+    return acc
+  }, [] as ({ link: string } | string)[])
+
+  return result
 }
