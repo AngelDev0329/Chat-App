@@ -8,6 +8,28 @@
   flex-direction: row-reverse;
 }
 
+#rightReply {
+  gap: 8px;
+  display: flex;
+  margin-bottom: -30px;
+  position: relative;
+  align-items: center;
+  justify-content: end;
+  flex-direction: row-reverse;
+  margin-right: 30px;
+}
+
+#rightReply > div {
+  padding: 10px;
+  color: #24292f;
+  font-size: 1rem;
+  max-width: 600px;
+  position: relative;
+  border-radius: 10px;
+  background-color: #eaeaea;
+  border-bottom-right-radius: 0;
+}
+
 #rightMessage:hover #rightMessage__actions {
   opacity: 1;
 }

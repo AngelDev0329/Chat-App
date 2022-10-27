@@ -7,8 +7,34 @@
   flex-direction: row;
 }
 
+#leftReply {
+  gap: 8px;
+  display: flex;
+  margin-bottom: -30px;
+  position: relative;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row-reverse;
+  margin-left: 30px;
+}
+
+#leftReply > div {
+  padding: 10px;
+  color: white;
+  font-size: 1rem;
+  max-width: 600px;
+  position: relative;
+  border-radius: 10px;
+  background-color: #4285f4;
+  border-bottom-left-radius: 0;
+}
+
 #leftMessage:hover #leftMessage__actions {
   opacity: 1;
+}
+
+#leftMessage .message__avatar {
+  position: absolute;
 }
 
 #leftMessage .leftMessage__text--link {
@@ -17,7 +43,6 @@
   font-size: 1rem;
   max-width: 600px;
   margin-left: 30px;
-
   position: relative;
   border-radius: 10px;
   background-color: #e2e8ef;

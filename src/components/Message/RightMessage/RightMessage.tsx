@@ -73,7 +73,7 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
       }}
       id={`message-${message.id}`}
     >
-      <div>
+      <div id="rightReply" className="rightMessage__reply--badge">
         {!!message.replyTo && (
           <ReplyBadge messageId={message.replyTo as string} />
         )}

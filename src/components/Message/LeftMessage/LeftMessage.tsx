@@ -59,7 +59,10 @@ export function LeftMessage({
       }}
       id={`message-${message.id}`}
     >
-      <div className={conversation.users.length === 2 ? 'px-8' : 'px-[70px]'}>
+      <div
+        id="leftReply"
+        className={conversation.users.length === 2 ? 'px-8' : 'px-[70px]'}
+      >
         {!!message.replyTo && (
           <ReplyBadge messageId={message.replyTo as string} />
         )}
@@ -76,7 +79,10 @@ export function LeftMessage({
         }
       >
         {conversation.users.length > 2 && (
-          <div id="leftMessage" onClick={(event) => event.stopPropagation()}>
+          <div
+            className="message__avatar"
+            onClick={(event) => event.stopPropagation()}
+          >
             {docs[index - 1]?.data()?.sender !== message.sender && (
               <AvatarFromId uid={message.sender} />
             )}
