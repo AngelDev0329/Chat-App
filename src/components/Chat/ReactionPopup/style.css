@@ -1,5 +1,5 @@
 .popup__right {
-  top: -35px;
+  top: -50px;
   right: 30px;
   padding: 5px;
   display: flex;
@@ -10,7 +10,7 @@
 }
 
 .popup__left {
-  top: -35px;
+  top: -60px;
   left: 30px;
   padding: 5px;
   display: flex;
