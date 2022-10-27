@@ -6,6 +6,7 @@ import { firebaseDb, REACTIONS_UI, useUserStore } from '../../../library'
 import './style.css'
 
 type ReactionPopupProps = {
+  isOpen: boolean
   position: 'left' | 'right'
   setIsOpen: (value: boolean) => void
   messageId: string
@@ -13,6 +14,7 @@ type ReactionPopupProps = {
 }
 
 export function ReactionPopup({
+  isOpen,
   position,
   setIsOpen,
   messageId,
@@ -51,7 +53,7 @@ export function ReactionPopup({
             onClick={() => {
               if (index + 1 === currentReaction) updateReaction(0)
               else updateReaction(index + 1)
-              setIsOpen(false)
+              setIsOpen(!isOpen)
             }}
             title={key}
             src={value.gif}

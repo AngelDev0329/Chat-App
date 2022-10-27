@@ -188,6 +188,7 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
         {isSelectReactionOpen && (
           <ReactionPopup
             position="right"
+            isOpen={isSelectReactionOpen}
             setIsOpen={setIsSelectReactionOpen}
             messageId={message.id as string}
             currentReaction={

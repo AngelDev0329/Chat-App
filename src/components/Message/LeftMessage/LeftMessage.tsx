@@ -172,7 +172,8 @@ export function LeftMessage({
         )}{' '}
         {isSelectReactionOpen && (
           <ReactionPopup
-            position={'left'}
+            position="left"
+            isOpen={isSelectReactionOpen}
             setIsOpen={setIsSelectReactionOpen}
             messageId={message.id as string}
             currentReaction={
@@ -181,11 +182,8 @@ export function LeftMessage({
           />
         )}
         {Object.keys(message.reactions || {}).length > 0 && (
-          <ReactionStatus
-            message={message}
-            position={conversation.users.length > 2 ? 'left-tab' : 'left'}
-          />
-        )}
+          <ReactionStatus message={message} position="left" />
+        )}{' '}
       </div>
     </motion.div>
   )
