@@ -9,11 +9,10 @@ type AvatarFromIdProps = {
   size?: number
 }
 
-const AvatarFromId = ({ uid, size = 30 }: AvatarFromIdProps) => {
+const AvatarFromId = ({ uid, size = 20 }: AvatarFromIdProps) => {
   const { data, loading, error } = useUsersInfo([uid])
 
-  if (loading) return <Skeleton variant="circular" width={30} height={30} />
-
+  if (loading) return <Skeleton variant="circular" width={20} height={20} />
   if (error)
     return <img src={DEFAULT_AVATAR} style={{ width: size, height: size }} />
 
