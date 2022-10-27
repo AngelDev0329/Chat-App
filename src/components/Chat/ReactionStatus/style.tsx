@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import { theme } from '../../../styles/theme'
 
 export const Container = styled.div`
-  padding: 5px 15px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,6 +30,7 @@ export const CloseButton = styled.button`
 export const User = styled.div`
   display: flex;
   align-items: center;
+  padding: 15px 0;
 `
 
 export const Image = styled.img`
@@ -44,6 +44,6 @@ export const Name = styled.p`
 
 export const Wrapper = styled.div`
   display: flex;
-  padding: 15px;
+  padding: 0 15px;
   justify-content: space-between;
 `
