@@ -7,7 +7,5 @@ export const theme = {
   DarkGrey: '#4b5563',
   PrimaryBlue: '#4285F4',
   ViewColor: '#edeff3',
-
-  SecondaryBlue: '#34B7F1',
   OffWhite: '#f5f8fe',
 }
