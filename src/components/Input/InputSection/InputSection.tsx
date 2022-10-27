@@ -43,13 +43,11 @@ import {
 } from './style'
 
 type InputHeaderProps = {
-  disabled: boolean
   replyInfo: any
   setReplyInfo: React.Dispatch<React.SetStateAction<null>>
   setInputSectionOffset: React.Dispatch<React.SetStateAction<number>>
 }
 export function InputSection({
-  disabled,
   replyInfo,
   setReplyInfo,
   setInputSectionOffset,
@@ -322,7 +320,6 @@ export function InputSection({
           <InputWrapper>
             <Input
               maxLength={1000}
-              disabled={disabled}
               ref={textInputRef}
               value={inputValue}
               onChange={(event) => {

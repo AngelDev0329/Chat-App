@@ -70,7 +70,6 @@ export function Chat() {
               setInputSectionOffset={setInputSectionOffset}
               replyInfo={replyInfo}
               setReplyInfo={setReplyInfo}
-              disabled={false}
             />
           </>
         )}

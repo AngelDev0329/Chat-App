@@ -51,6 +51,7 @@ export const Input = styled.input`
   padding: 5px 15px;
   border-radius: 30px;
   background-color: ${theme.Border};
+  border: 1px solid ${theme.BorderHover};
 
   ::placeholder {
     color: ${theme.DarkGrey};
