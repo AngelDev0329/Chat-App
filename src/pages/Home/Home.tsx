@@ -1,5 +1,5 @@
-import { Sidebar } from "../../components";
-import { Wrapper, HomeWrapper, Text, Image } from "./style";
+import { Sidebar } from '../../components'
+import { Wrapper, HomeWrapper, Text, Image } from './style'
 
 export function Home() {
   return (
@@ -7,8 +7,8 @@ export function Home() {
       <Sidebar />
       <HomeWrapper>
         <Image src="/public/cat.png" />
-        <Text>Select a conversation to start chatting</Text>
+        <Text>Select a conversation to start chatting.</Text>
       </HomeWrapper>
     </Wrapper>
-  );
+  )
 }

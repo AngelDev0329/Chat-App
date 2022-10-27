@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { theme } from '../../styles/theme'
 
 export const Text = styled.p`
+  color: ${theme.DarkGrey};
   font-size: calc(18 / 16 * 1rem);
 `
 
@@ -23,7 +24,7 @@ export const HomeWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  color: ${theme.LightGrey};
+  background-color: #f5f8fe;
 
   @media screen and (max-width: 768px) {
     display: none;
