@@ -8,7 +8,7 @@ export const Header = styled.div`
   padding: 0 20px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid ${theme.Border};
+  border-bottom: 1px solid ${theme.BorderHover};
 
   @media screen and (max-width: 768px) {
     padding: 0 15px;
@@ -22,16 +22,6 @@ export const Name = styled.p`
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
-`
-
-export const HomeLink = styled.a`
-  display: none;
-  @media screen and (max-width: 768px) {
-    display: flex;
-    font-size: 1.6rem;
-    color: ${theme.Blue};
-    margin-right: 20px;
-  }
 `
 
 export const SingleImage = styled.img`
@@ -69,8 +59,8 @@ export const ImageSecondary = styled.img`
 `
 
 export const SettingButton = styled.button`
-  display: flex;
   border: none;
+  display: flex;
   font-size: 1.5rem;
   margin-left: 30px;
   color: ${theme.DarkGrey};
@@ -78,8 +68,8 @@ export const SettingButton = styled.button`
 `
 
 export const GroupButton = styled.button`
-  display: flex;
   border: none;
+  display: flex;
   font-size: 2rem;
   margin-left: 30px;
   color: ${theme.DarkGrey};

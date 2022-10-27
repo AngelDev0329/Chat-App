@@ -4,7 +4,9 @@ import { Skeleton } from '@mui/material'
 import { useState } from 'react'
 import { GoChevronLeft } from 'react-icons/go'
 import { MdGroups, MdInfo } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
+import './style.css'
 import { useUsersInfo } from '../../../hooks'
 import { IMAGE_PROXY } from '../../../library'
 import { useUserStore } from '../../../library'
@@ -15,7 +17,6 @@ import {
   Name,
   Header,
   Wrapper,
-  HomeLink,
   Relative,
   SingleImage,
   ImagePrimary,
@@ -43,9 +44,9 @@ export function ChatHeader({ conversation }: ChatHeaderProps) {
     <>
       <Header>
         <Wrapper>
-          <HomeLink href="/" aria-label="Home">
+          <Link className="mobile__link" to="/" aria-label="Home" style={{}}>
             <GoChevronLeft />
-          </HomeLink>
+          </Link>
 
           {loading ? (
             <Skeleton variant="circular" width={40} height={40} />
