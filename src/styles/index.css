@@ -17,7 +17,6 @@ button:disabled {
 
 *::-webkit-scrollbar {
   width: 6px;
-
   margin-right: 30px;
   background-color: rgb(225, 225, 225);
 }
@@ -40,46 +39,6 @@ button:disabled {
   height: 5px;
 }
 
-.not-active {
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.not-active:hover {
-  background-color: #eff2f6;
-}
-
-.active {
-  text-decoration: none;
-  background-color: #e2e8ef;
-}
-
-.active-border {
-  background-image: linear-gradient(white, white),
-    radial-gradient(circle at 20% 107%, white 0%, white 60%);
-}
-
-.not-active-border {
-  background-image: linear-gradient(#e2e8ef, #e2e8ef),
-    radial-gradient(circle at 20% 107%, #e2e8ef 0%, #e2e8ef 60%);
-}
-
-.active-button {
-  background-color: #e2e8ef;
-}
-
-.not-active-button {
-  background-color: transparent;
-}
-
 .extra {
   margin-bottom: 8px;
-}
-
-.no-scrollbar {
-  background-color: #f8f8f8;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
 }

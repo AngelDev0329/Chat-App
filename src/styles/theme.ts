@@ -8,12 +8,6 @@ export const theme = {
   PrimaryBlue: '#4285F4',
   ViewColor: '#edeff3',
 
-  // Orange
-  TealDarkOrange: '#c88a3d',
-  TealLightOrange: '#ECA752',
-  MediumOrange: '#F6CD85',
-  LightOrange: `#FFDC9C`,
-
   SecondaryBlue: '#34B7F1',
   OffWhite: '#f5f8fe',
 }
