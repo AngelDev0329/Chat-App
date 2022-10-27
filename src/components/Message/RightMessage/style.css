@@ -1,7 +1,9 @@
+@import url('../../../styles/global.css');
+
 #rightMessage {
   gap: 8px;
   display: flex;
-  margin: 20px 0;
+  margin: 35px 0;
   position: relative;
   align-items: center;
   justify-content: end;
@@ -11,21 +13,22 @@
 #rightReply {
   gap: 8px;
   display: flex;
-  margin-bottom: -30px;
   position: relative;
+  margin-right: 30px;
   align-items: center;
   justify-content: end;
+  margin-bottom: -40px;
   flex-direction: row-reverse;
-  margin-right: 30px;
 }
 
 #rightReply > div {
   padding: 10px;
-  color: #24292f;
+  color: --black;
   font-size: 1rem;
   max-width: 600px;
   position: relative;
   border-radius: 10px;
+  border: 1px solid #e4e4e4;
   background-color: #eaeaea;
   border-bottom-right-radius: 0;
 }
@@ -35,19 +38,20 @@
 }
 
 #rightMessage .rightMessage__text--link {
-  color: #fff;
+  color: var(--white);
   padding: 10px;
   font-size: 1rem;
   max-width: 600px;
   margin-right: 30px;
   position: relative;
   border-radius: 10px;
-  background-color: #4285f4;
   border-bottom-right-radius: 0;
+  box-shadow: 0 1px 3px #0000002a;
+  background-color: var(--primary-blue);
 }
 
 #rightMessage .rightMessage__text--link a {
-  color: #fff;
+  color: var(--white);
 }
 
 /* rightMessage Actions Button */
@@ -66,7 +70,7 @@
 }
 
 #rightMessage #rightMessage__actions button:hover {
-  color: #4285f4;
+  color: var(--primary-blue);
 }
 
 #rightMessage #rightMessage__actions button:first-child {
@@ -76,23 +80,25 @@
 /* Remove Image */
 #rightMessage .rightMessage__removed {
   padding: 10px;
-  color: #6b7280;
+  color: var(--darkgrey);
   margin-right: 30px;
   border-radius: 10px;
-  border: 1px solid #6b7280;
+  border: 1px solid var(--darkgrey);
   border-bottom-right-radius: 0;
 }
 
 /* File */
 #rightMessage .rightMessage__file {
-  display: flex;
   width: 300px;
+  display: flex;
   margin-right: 30px;
   padding: 10px 10px;
   align-items: center;
   border-radius: 10px;
   justify-content: center;
+  border: 1px solid #cacaca;
   background-color: #eaeaea;
+  box-shadow: 0 1px 3px #0000001a;
 }
 
 #rightMessage .rightMessage__file a {
@@ -115,7 +121,6 @@
 
 #rightMessage .rightMessage__file .rightMessage__file--info p:last-child {
   color: #6b7280;
-  font-weight: 500;
   font-size: 0.9rem;
 }
 
@@ -123,6 +128,7 @@
 #rightMessage .rightMessage__image {
   width: 200px;
   margin-right: 30px;
+  box-shadow: 0 1px 3px #0000002a;
 }
 
 /* Mobile */

@@ -1,7 +1,9 @@
+@import url('../../../styles/global.css');
+
 #leftMessage {
   gap: 8px;
   display: flex;
-  margin: 20px 0;
+  margin: 35px 0;
   align-items: center;
   justify-content: start;
   flex-direction: row;
@@ -10,7 +12,7 @@
 #leftReply {
   gap: 8px;
   display: flex;
-  margin-bottom: -30px;
+  margin-bottom: -40px;
   position: relative;
   align-items: center;
   justify-content: start;
@@ -20,12 +22,13 @@
 
 #leftReply > div {
   padding: 10px;
-  color: white;
+  color: --black;
   font-size: 1rem;
   max-width: 600px;
   position: relative;
   border-radius: 10px;
-  background-color: #4285f4;
+  border: 1px solid #e4e4e4;
+  background-color: #eaeaea;
   border-bottom-left-radius: 0;
 }
 
@@ -45,7 +48,9 @@
   margin-left: 30px;
   position: relative;
   border-radius: 10px;
-  background-color: #e2e8ef;
+  /* border: 1px solid #efefef; */
+  background-color: #fff;
+  box-shadow: 0 1px 3px #0000001a;
   border-bottom-left-radius: 0;
 }
 
@@ -69,7 +74,7 @@
 }
 
 #leftMessage #leftMessage__actions button:hover {
-  color: #4285f4;
+  color: var(--primary-blue);
 }
 
 #leftMessage #leftMessage__actions button:first-child {
@@ -79,23 +84,25 @@
 /* Remove Image */
 #leftMessage .leftMessage__removed {
   padding: 10px;
-  color: #6b7280;
   margin-left: 30px;
   border-radius: 10px;
-  border: 1px solid #6b7280;
+  color: var(--darkgrey);
+  border: 1px solid var(--darkgrey);
   border-bottom-left-radius: 0;
 }
 
 /* File */
 #leftMessage .leftMessage__file {
-  display: flex;
   width: 300px;
+  display: flex;
   margin-left: 30px;
   padding: 10px 10px;
   align-items: center;
   border-radius: 10px;
   justify-content: center;
+  border: 1px solid #cacaca;
   background-color: #eaeaea;
+  box-shadow: 0 1px 3px #0000001a;
 }
 
 #leftMessage .leftMessage__file a {
@@ -117,8 +124,7 @@
 }
 
 #leftMessage .leftMessage__file .leftMessage__file--info p:last-child {
-  color: #6b7280;
-  font-weight: 500;
+  color: var(--lightgrey);
   font-size: 0.9rem;
 }
 
@@ -126,6 +132,7 @@
 #leftMessage .leftMessage__image {
   width: 200px;
   margin-left: 30px;
+  box-shadow: 0 1px 3px #0000002a;
 }
 
 /* Utilities */
