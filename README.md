@@ -1,13 +1,40 @@
-### Sabito  ⤵
-Currently building a chat app, more coming soon...
-  
-<br> 
-
-### 🛠️ - Dependencies 
+### Sabito - Chat App  ⤵
  
- `React` &nbsp; `TypeScript` &nbsp; `Zustand` &nbsp; `Styled Components` &nbsp; `Playwright` &nbsp; `E2E Testing` &nbsp; `Build tool: Vite` 
- 
-<br> 
+Sabito is a realtime chat app, built with react, typescript, firebase and other technologies. My inspiration came from [Whatsapp](https://web.whatsapp.com/) and [Messenger](https://www.messenger.com/). `Note: I need to add some tests before I'm finished. Therefore, the website is not available.`
 
-### 🔗 - Demo: https://sabito.vercel.app/ 
-### _NOTE: You will get an error if you try to log in, I have not made the page active in firebase_
+### 📚 - What I've learned so far... 
+
+- Focused a lot on the UX
+- Managing indexes in Firebase
+- Formatting TimeStamp into [day.js](https://github.com/iamkun/dayjs)
+- Creating custom hooks (Specifically for Firebase)
+- And much more...
+
+### 🚀 - Feautures
+
+- Sign in with Google 
+- Create conversations (private, group)
+- Allow sending
+  - Text
+  - File 
+  - Image
+- Reply to message
+- Drop file to upload
+- Notify to unseen messages
+- Send reactions to message 
+- Show if user has seen message
+- Detect link an add an anchor to it
+- View conversations images and files
+- Change group name or group profile picture
+ 
+
+### 🛠️ - Main technologies 
+`React` &nbsp;`Firebase` &nbsp;`TypeScript` &nbsp;`Styled Components` &nbsp;`Framer Motion` &nbsp;`Playwright` &nbsp;`E2E Test` &nbsp;`Build tool: Vite` 
+
+<details>
+<summary><h3> 📸 - Demo Images </h3></summary>
+coming soon...
+</details>
+
+
+ 
