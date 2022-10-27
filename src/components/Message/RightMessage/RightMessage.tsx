@@ -65,7 +65,7 @@ export function RightMessage({ message, setReplyInfo }: RightMessageProps) {
           translateY: '0px',
           opacity: 1,
           transition: {
-            delay: 0.3,
+            delay: 0.2,
             type: 'spring',
             duration: 0.8,
           },

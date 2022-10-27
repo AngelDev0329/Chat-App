@@ -41,7 +41,7 @@ export const Button = styled.button`
   border-left: none;
   border-right: none;
   color: ${theme.DarkGrey};
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   justify-content: space-between;
   border-top: 1px solid ${theme.Border};
   border-bottom: 1px solid ${theme.Border};

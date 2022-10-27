@@ -72,7 +72,7 @@ export const Button = styled.button`
   border-radius: 4px;
   color: ${theme.White};
   background-color: ${theme.PrimaryBlue};
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   :hover {
     background-color: #3b7be3;
   }

@@ -40,7 +40,7 @@ export const ChatButton = styled.button`
   align-items: center;
   color: ${theme.Black};
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   background-color: ${theme.Border};
   :hover {
     background-color: ${theme.BorderHover};
@@ -110,7 +110,7 @@ export const SelectConversationButton = styled.button`
   padding: 6px 10px;
   font-size: 0.9rem;
   border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   background-color: ${theme.Border};
   :hover {
     background-color: ${theme.BorderHover};

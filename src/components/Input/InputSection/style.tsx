@@ -77,7 +77,7 @@ export const DragFile = styled.div`
   align-items: center;
   pointer-events: none;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 
   background-color: #3333331b;
 `

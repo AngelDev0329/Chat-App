@@ -2,7 +2,7 @@
 
 .not-active {
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .not-active:hover {

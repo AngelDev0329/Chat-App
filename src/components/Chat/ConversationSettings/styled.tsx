@@ -47,7 +47,7 @@ export const Button = styled.button`
   margin: 5px 10px;
   padding: 10px;
   border: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   :hover {
     background-color: ${theme.Border};
   }

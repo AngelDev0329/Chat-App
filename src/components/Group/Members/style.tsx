@@ -54,7 +54,7 @@ export const Button = styled.button`
   font-weight: 500;
   align-items: center;
   font-size: 0.75rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   :not(:last-child) {
     margin-bottom: 5px;
   }
