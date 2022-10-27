@@ -1,15 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { MessageItem } from '../../../library'
 
+import { Dialog } from '@mui/material'
 import { useState } from 'react'
 import { FiX } from 'react-icons/fi'
 
 import { useUsersInfo } from '../../../hooks'
 import { IMAGE_PROXY } from '../../../library'
 import { REACTIONS_UI } from '../../../library'
+// eslint-disable-next-line import/order
 import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
 
 import './style.css'
+
+import {
+  CloseButton,
+  Container,
+  Title,
+  User,
+  Wrapper,
+  Image,
+  Name,
+} from './style'
 
 type ReactionStatusProps = {
   position: 'left' | 'right' | 'left-tab'
@@ -24,6 +36,10 @@ export function ReactionStatus({ message, position }: ReactionStatusProps) {
   } = useUsersInfo(Object.keys(message.reactions || {}))
 
   const [isReactionStatusOpened, setIsReactionStatusOpened] = useState(false)
+
+  const handleClose = () => {
+    setIsReactionStatusOpened(false)
+  }
 
   return (
     <>
@@ -48,7 +64,6 @@ export function ReactionStatus({ message, position }: ReactionStatusProps) {
           .map(([key, value]) => (
             <img
               key={key}
-              className="h-3 w-3"
               src={Object.entries(REACTIONS_UI)[Number(key) - 1][1].icon}
               alt=""
             />
@@ -63,50 +78,48 @@ export function ReactionStatus({ message, position }: ReactionStatusProps) {
       </div>
 
       {isReactionStatusOpened && (
-        <div onClick={() => setIsReactionStatusOpened(false)}>
-          <div onClick={(e) => e.stopPropagation()}>
+        <Dialog onClose={handleClose} open={isReactionStatusOpened}>
+          <Container>
+            <Title>Reactions</Title>
+
+            <CloseButton onClick={() => setIsReactionStatusOpened(false)}>
+              <FiX />
+            </CloseButton>
+          </Container>
+
+          {loading || error ? (
+            <MiniSpinner />
+          ) : (
             <div>
-              <h1>Reactions</h1>
-
-              <button onClick={() => setIsReactionStatusOpened(false)}>
-                <FiX />
-              </button>
-            </div>
-
-            {loading || error ? (
-              <MiniSpinner />
-            ) : (
-              <div>
-                {Object.entries(message.reactions)
-                  .filter(([key, value]) => value)
-                  .map(([key, value]) => (
-                    <div key={key}>
-                      <div>
-                        <img
-                          src={IMAGE_PROXY(
-                            usersInfo?.find((user) => user.id === key)?.data()
-                              ?.photoURL
-                          )}
-                          alt=""
-                        />
-                        <p>
-                          {
-                            usersInfo?.find((user) => user.id === key)?.data()
-                              ?.displayName
-                          }
-                        </p>
-                      </div>
-
-                      <img
-                        src={Object.values(REACTIONS_UI)[value - 1].icon}
+              {Object.entries(message.reactions)
+                .filter(([key, value]) => value)
+                .map(([key, value]) => (
+                  <Wrapper key={key}>
+                    <User>
+                      <Image
+                        src={IMAGE_PROXY(
+                          usersInfo?.find((user) => user.id === key)?.data()
+                            ?.photoURL
+                        )}
                         alt=""
                       />
-                    </div>
-                  ))}
-              </div>
-            )}
-          </div>
-        </div>
+                      <Name>
+                        {
+                          usersInfo?.find((user) => user.id === key)?.data()
+                            ?.displayName
+                        }
+                      </Name>
+                    </User>
+
+                    <img
+                      src={Object.values(REACTIONS_UI)[value - 1].icon}
+                      alt=""
+                    />
+                  </Wrapper>
+                ))}
+            </div>
+          )}
+        </Dialog>
       )}
     </>
   )
