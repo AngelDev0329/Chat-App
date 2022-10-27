@@ -1,4 +1,5 @@
 .status__right {
+  cursor: pointer;
   right: 40px;
   display: flex;
   bottom: -15px;
@@ -25,6 +26,8 @@
 }
 
 .status__left-twenty {
+  cursor: pointer;
+
   left: 40px;
   display: flex;
   bottom: -15px;
@@ -38,6 +41,8 @@
 }
 
 .status__left-seventy {
+  cursor: pointer;
+
   left: 60px;
   bottom: -0px;
   display: flex;
