@@ -112,7 +112,12 @@ export const ChatView = ({
     }
   }, [])
 
-  if (loading) return <MiniSpinner />
+  if (loading)
+    return (
+      <Grow>
+        <MiniSpinner />
+      </Grow>
+    )
 
   if (error)
     return (
@@ -137,7 +142,11 @@ export const ChatView = ({
       next={() => setLimitCount((prev) => prev + 10)}
       inverse
       hasMore={(data?.size as number) >= limitCount}
-      loader={<MiniSpinner />}
+      loader={
+        <Grow>
+          <MiniSpinner />
+        </Grow>
+      }
       style={{ display: 'flex', flexDirection: 'column-reverse' }}
       height={`calc(100vh - ${144 + inputSectionOffset}px)`}
     >

@@ -15,7 +15,7 @@ import {
   IMAGE_PROXY,
   useUserStore,
 } from '../../library'
-import { Spinner } from '../Spinner/Spinner'
+import { MiniSpinner } from '../MiniSpinner/MiniSpinner'
 import {
   SideBar,
   Navbar,
@@ -124,7 +124,7 @@ export function Sidebar() {
 
       {loading ? (
         <Container>
-          <Spinner />
+          <MiniSpinner />
         </Container>
       ) : error ? (
         <Container>

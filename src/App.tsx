@@ -1,37 +1,32 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
-import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { onAuthStateChanged } from 'firebase/auth'
+import { setDoc, doc } from 'firebase/firestore'
+import { useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
 
-import { Spinner, PrivateRoute } from "./components";
-import { firebaseAuth, firebaseDb, useUserStore } from "./library/index";
-import { Chat, Home, SignIn } from "./pages";
+import { PrivateRoute, Spinner } from './components'
+import { firebaseAuth, firebaseDb, useUserStore } from './library/index'
+import { Chat, Home, SignIn } from './pages'
 
 export function App() {
-  const currentUser = useUserStore((state) => state.currentUser);
-  const setCurrentUser = useUserStore((state) => state.setCurrentUser);
+  const currentUser = useUserStore((state) => state.currentUser)
+  const setCurrentUser = useUserStore((state) => state.setCurrentUser)
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
-        setCurrentUser(user);
+        setCurrentUser(user)
         setDoc(doc(firebaseDb, `users/${user.uid}`), {
           uid: user.uid,
           email: user.email,
           displayName: user.displayName,
           photoURL: user.photoURL,
           phoneNumber: user.phoneNumber || user.providerData?.[0]?.phoneNumber,
-        });
-      } else setCurrentUser(null);
-    });
-  }, []);
+        })
+      } else setCurrentUser(null)
+    })
+  }, [])
 
-  if (typeof currentUser === "undefined")
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Spinner />
-      </div>
-    );
+  if (typeof currentUser === 'undefined') return <Spinner />
 
   return (
     <>
@@ -57,5 +52,5 @@ export function App() {
         />
       </Routes>
     </>
-  );
+  )
 }

@@ -13,7 +13,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { useCollectionQuery } from '../../../hooks'
 import { firebaseDb, IMAGE_PROXY, useUserStore } from '../../../library'
-import { Spinner } from '../../Spinner/Spinner'
+import { Grow } from '../../Chat/ChatView/style'
+import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
 import { CloseButton } from '../Profile/style'
 import {
   Error,
@@ -103,16 +104,14 @@ export function CreateConversation({
   return (
     <Dialog onClose={handleClose} open={isModalOpen}>
       {loading ? (
-        <div>
-          <Spinner />
-        </div>
+        <MiniSpinner />
       ) : error ? (
         <Error>
           <Text>Something went wrong</Text>
         </Error>
       ) : (
         <Container>
-          {isCreating && <Spinner />} <Title>New Conversation</Title>
+          {isCreating && <MiniSpinner />} <Title>New Conversation</Title>
           <Users>
             {data?.docs
               .filter((doc) => doc.data().uid !== currentUser?.uid)

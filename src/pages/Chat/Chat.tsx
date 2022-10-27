@@ -8,22 +8,14 @@ import {
   ChatHeader,
   ChatView,
   InputSection,
+  MiniSpinner,
   Sidebar,
-  Spinner,
 } from '../../components'
+import { Grow } from '../../components/Chat/ChatView/style'
 import { useDocumentQuery } from '../../hooks/useDocumentQuery'
 import { useUserStore } from '../../library'
 import { firebaseDb } from '../../library'
-import {
-  ChatWrapper,
-  Error,
-  Text,
-  Image,
-  Wrapper,
-  Line,
-  Grow,
-  MobileHide,
-} from './style'
+import { ChatWrapper, Error, Text, Image, Wrapper, MobileHide } from './style'
 
 import ERROR_IMAGE from '/public/error.png'
 export function Chat() {
@@ -45,11 +37,9 @@ export function Chat() {
       </MobileHide>
       <ChatWrapper>
         {loading ? (
-          <>
-            <Line />
-            <Grow />
-            <Spinner />
-          </>
+          <Grow>
+            <MiniSpinner />
+          </Grow>
         ) : !conversation ||
           error ||
           !conversation.users.includes(currentUser?.uid as string) ? (
