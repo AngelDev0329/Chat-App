@@ -1,8 +1,19 @@
 export const theme = {
   White: '#fff',
   Black: '#24292f',
-  Border: '#e2e8ef',
+  Border: '#edeff3',
+  BorderHover: '#e0e4ee',
   LightGrey: '#6b7280',
   DarkGrey: '#4b5563',
-  Blue: '#4285F4',
+  PrimaryBlue: '#4285F4',
+  ViewColor: '#edeff3',
+
+  // Orange
+  TealDarkOrange: '#c88a3d',
+  TealLightOrange: '#ECA752',
+  MediumOrange: '#F6CD85',
+  LightOrange: `#FFDC9C`,
+
+  SecondaryBlue: '#34B7F1',
+  OffWhite: '#f5f8fe',
 }

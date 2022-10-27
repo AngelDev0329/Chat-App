@@ -3,11 +3,12 @@ import styled from '@emotion/styled'
 import { theme } from '../../../styles/theme'
 
 export const Grow = styled.div`
-  display: flex;
   flex-grow: 1;
+  display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  background-color: ${theme.OffWhite};
 `
 
 export const Text = styled.p`

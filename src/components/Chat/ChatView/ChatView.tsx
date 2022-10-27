@@ -19,6 +19,7 @@ import { LeftMessage, RightMessage } from '../../Message'
 import { MiniSpinner } from '../../MiniSpinner/MiniSpinner'
 import AvatarFromId from '../AvatarFormId/AvatarFormId'
 import { Grow, Image, Text, MiniWrapper } from './style'
+import './style.css'
 
 type ChatViewProps = {
   conversation: ConversationInfo
