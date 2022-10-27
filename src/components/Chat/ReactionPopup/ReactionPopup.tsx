@@ -1,4 +1,5 @@
 import { updateDoc, doc } from 'firebase/firestore'
+import ClickAwayListener from 'react-click-away-listener'
 import { useParams } from 'react-router-dom'
 
 import { firebaseDb, REACTIONS_UI, useUserStore } from '../../../library'
@@ -40,27 +41,29 @@ export function ReactionPopup({
   }
 
   return (
-    <div
-      id="popup"
-      className={position === 'left' ? 'popup__left' : 'popup__right'}
-    >
-      {Object.entries(REACTIONS_UI).map(([key, value], index) => (
-        <div
-          key={key}
-          className={index + 1 === currentReaction ? 'current-reaction' : ''}
-        >
-          <img
-            onClick={() => {
-              if (index + 1 === currentReaction) updateReaction(0)
-              else updateReaction(index + 1)
-              setIsOpen(!isOpen)
-            }}
-            title={key}
-            src={value.gif}
-            alt=""
-          />
-        </div>
-      ))}
-    </div>
+    <ClickAwayListener onClickAway={() => setIsOpen(false)}>
+      <div
+        id="popup"
+        className={position === 'left' ? 'popup__left' : 'popup__right'}
+      >
+        {Object.entries(REACTIONS_UI).map(([key, value], index) => (
+          <div
+            key={key}
+            className={index + 1 === currentReaction ? 'current-reaction' : ''}
+          >
+            <img
+              onClick={() => {
+                if (index + 1 === currentReaction) updateReaction(0)
+                else updateReaction(index + 1)
+                setIsOpen(!isOpen)
+              }}
+              title={key}
+              src={value.gif}
+              alt=""
+            />
+          </div>
+        ))}
+      </div>
+    </ClickAwayListener>
   )
 }
