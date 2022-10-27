@@ -3,10 +3,10 @@ import type { ConversationInfo } from '../../../library'
 import { Skeleton } from '@mui/material'
 import { BsCircleFill } from 'react-icons/bs'
 import { Link, useParams } from 'react-router-dom'
+import './style.css'
 
 import { useLastMessage, useUsersInfo } from '../../../hooks'
-import { IMAGE_PROXY } from '../../../library'
-import { useUserStore } from '../../../library'
+import { useUserStore, IMAGE_PROXY } from '../../../library'
 import {
   Flex,
   Image,
@@ -18,7 +18,6 @@ import {
   Relative,
 } from './style'
 
-import '../../../styles/index.css'
 type SelectConversationProps = {
   conversation: ConversationInfo
   conversationId: string

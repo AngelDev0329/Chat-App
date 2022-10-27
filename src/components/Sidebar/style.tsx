@@ -5,7 +5,7 @@ import { theme } from '../../styles/theme'
 export const SideBar = styled.div`
   width: 350px;
   height: 100vh;
-  border-right: 1px solid ${theme.Border};
+  border-right: 1px solid ${theme.BorderHover};
   @media screen and (max-width: 768px) {
     width: 100%;
     border-right: none;
@@ -18,7 +18,7 @@ export const Navbar = styled.div`
   padding: 0 30px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid ${theme.Border};
+  border-bottom: 1px solid ${theme.BorderHover};
 `
 
 export const Wrapper = styled.div`
@@ -40,7 +40,11 @@ export const ChatButton = styled.button`
   align-items: center;
   color: ${theme.Black};
   justify-content: center;
+  transition: all 0.3s ease;
   background-color: ${theme.Border};
+  :hover {
+    background-color: ${theme.BorderHover};
+  }
 `
 
 export const ProfilePicture = styled.img`
@@ -78,7 +82,7 @@ export const SignOutButton = styled.button`
   display: flex;
   font-size: 1rem;
   font-weight: 500;
-  color: #eb4e4e;
+  color: #f54040;
   padding: 10px 20px;
   align-items: center;
   transition: all 0.2s ease;
@@ -89,7 +93,6 @@ export const SignOutButton = styled.button`
 `
 
 // No Convo
-
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -107,9 +110,9 @@ export const SelectConversationButton = styled.button`
   padding: 6px 10px;
   font-size: 0.9rem;
   border-radius: 4px;
-  background-color: ${theme.Border};
   transition: all 0.3s ease;
+  background-color: ${theme.Border};
   :hover {
-    background-color: #cfd7e1;
+    background-color: ${theme.BorderHover};
   }
 `

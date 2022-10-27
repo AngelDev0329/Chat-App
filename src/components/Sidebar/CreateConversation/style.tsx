@@ -2,6 +2,10 @@ import styled from '@emotion/styled'
 
 import { theme } from '../../../styles/theme'
 
+export const Container = styled.div`
+  position: relative;
+`
+
 export const Error = styled.div`
   display: flex;
   text-align: center;
@@ -14,46 +18,50 @@ export const Text = styled.p`
 `
 
 export const Users = styled.div`
-  height: 280px;
   display: flex;
-  overflow: hidden;
+  max-height: 300px;
+  overflow-y: scroll;
   flex-direction: column;
-  padding: 0 15px 30px 15px;
+  /* border-bottom: 1px solid ${theme.BorderHover}; */
 `
 
 export const Title = styled.h1`
+  padding: 20px;
   font-weight: 600;
-  padding: 15px;
   text-align: center;
-  margin-bottom: 15px;
   font-size: calc(20 / 16 * 1rem);
-  border-bottom: 1px solid ${theme.Border};
+  border-bottom: 1px solid ${theme.BorderHover};
 `
 
 export const User = styled.div`
   width: 350px;
   display: flex;
-  padding: 10px 0;
+  padding: 15px;
+  height: 80px;
   cursor: pointer;
   align-items: center;
+  transition: all 0.2s ease;
+  border-bottom: 1px dotted ${theme.BorderHover};
+
+  :hover {
+    background-color: ${theme.Border};
+  }
 `
 
 export const Image = styled.img`
   width: 40px;
-  margin: 0 10px 0 15px;
   border-radius: 50%;
+  margin: 0 10px 0 15px;
 `
 
 export const Name = styled.p`
   font-size: 1rem;
-  font-weight: 500;
 `
 
 export const Wrapper = styled.p`
   display: flex;
   padding: 15px;
   justify-content: end;
-  border-top: 1px solid ${theme.Border};
 `
 
 export const Button = styled.button`
@@ -62,9 +70,10 @@ export const Button = styled.button`
   padding: 8px 10px;
   font-size: 0.9rem;
   border-radius: 4px;
-  background-color: ${theme.Border};
+  color: ${theme.White};
+  background-color: ${theme.PrimaryBlue};
   transition: all 0.3s ease;
   :hover {
-    background-color: #cfd7e1;
+    background-color: #3b7be3;
   }
 `

@@ -8,11 +8,13 @@ import {
   where,
 } from 'firebase/firestore'
 import { useState } from 'react'
+import { FiX } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 
 import { useCollectionQuery } from '../../../hooks'
 import { firebaseDb, IMAGE_PROXY, useUserStore } from '../../../library'
 import { Spinner } from '../../Spinner/Spinner'
+import { CloseButton } from '../Profile/style'
 import {
   Error,
   Text,
@@ -23,6 +25,7 @@ import {
   Wrapper,
   Button,
   Title,
+  Container,
 } from './style'
 type CreateConversationProps = {
   isModalOpen: boolean
@@ -108,10 +111,9 @@ export function CreateConversation({
           <Text>Something went wrong</Text>
         </Error>
       ) : (
-        <>
-          {isCreating && <Spinner />}
+        <Container>
+          {isCreating && <Spinner />} <Title>New Conversation</Title>
           <Users>
-            <Title>New Conversation</Title>
             {data?.docs
               .filter((doc) => doc.data().uid !== currentUser?.uid)
               .map((doc) => (
@@ -138,7 +140,10 @@ export function CreateConversation({
               Start conversation
             </Button>
           </Wrapper>
-        </>
+          <CloseButton aria-label="close" onClick={handleClose}>
+            <FiX />
+          </CloseButton>
+        </Container>
       )}
     </Dialog>
   )

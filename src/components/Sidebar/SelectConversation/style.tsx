@@ -8,10 +8,7 @@ export const Flex = styled.div`
   padding: 15px;
   align-items: center;
   position: relative;
-
-  :not-last-child {
-    border-bottom: 1px solid ${theme.Border};
-  }
+  border-bottom: 1px dotted ${theme.BorderHover};
 `
 
 export const Image = styled.img`
@@ -33,7 +30,7 @@ export const LastMessage = styled.p`
 export const Notify = styled.div`
   right: 20px;
   font-size: 0.5rem;
-  color: ${theme.Blue};
+  color: ${theme.PrimaryBlue};
   position: absolute;
 `
 
