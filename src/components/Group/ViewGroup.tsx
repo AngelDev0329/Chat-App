@@ -9,7 +9,7 @@ import { Admin } from './Admin/Admin'
 import { Members } from './Members/Members'
 import { Buttons, Button, CloseButton, Header, Title } from './style'
 
-import '../../styles/index.css'
+import './style.css'
 
 type ViewGroupProps = {
   isOpen: boolean

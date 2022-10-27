@@ -77,5 +77,5 @@ export const NameButton = styled.button`
   margin-right: 5px;
   font-weight: 500;
   padding: 7px 12px;
-  background-color: ${theme.LightGrey};
+  background-color: ${theme.PrimaryBlue};
 `

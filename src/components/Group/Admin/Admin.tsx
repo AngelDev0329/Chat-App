@@ -67,7 +67,7 @@ export function Admin({ conversation }: AdminProps) {
                   Remove admin position
                 </Button>
               ) : (
-                <Highlight>Captain</Highlight>
+                <Highlight>Admin</Highlight>
               )}
             </Wrapper>
           ))}

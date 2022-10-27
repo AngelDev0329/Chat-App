@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
     padding-top: 20px;
   }
   :not(:last-child) {
-    border-bottom: 1px solid ${theme.Border};
+    border-bottom: 1px dotted ${theme.BorderHover};
   }
 `
 
@@ -46,7 +46,7 @@ export const Menu = styled.div`
 `
 
 export const Button = styled.button`
-  border: 1px solid #d5dee8;
+  border: 1px solid ${theme.BorderHover};
   padding: 3px 10px;
   border-radius: 4px;
   background-color: ${theme.Border};
@@ -59,20 +59,20 @@ export const Button = styled.button`
     margin-bottom: 5px;
   }
   :hover {
-    background-color: #cfd7e1;
+    background-color: ${theme.BorderHover};
   }
 `
 
 export const Highlight = styled.span`
   display: flex;
-  color: #27822b;
+  color: #177ead;
   font-weight: 500;
   padding: 3px 10px;
   border-radius: 4px;
   font-size: 0.75rem;
   align-items: center;
-  background-color: #e5f9e3;
-  border: 1px solid #cdf7c9;
+  background-color: #daf3ff;
+  border: 1px solid #d3eaf4;
 `
 export const Info = styled.p`
   font-size: 1rem;
