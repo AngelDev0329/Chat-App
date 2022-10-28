@@ -45,7 +45,7 @@ export function Chat() {
           !conversation.users.includes(currentUser?.uid as string) ? (
           <Error>
             <Image src={ERROR_IMAGE} alt="" />
-            <Text>Conversation does not exist</Text>
+            <Text>Conversation does not exist.</Text>
           </Error>
         ) : (
           <>

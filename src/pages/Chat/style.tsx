@@ -15,6 +15,7 @@ export const ChatWrapper = styled.div`
   height: 100vh;
   align-items: stretch;
   flex-direction: column;
+  background-color: ${theme.OffWhite};
 `
 
 export const Error = styled.div`
@@ -25,7 +26,7 @@ export const Error = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  color: ${theme.LightGrey};
+  color: ${theme.DarkGrey};
 `
 
 export const Text = styled.p`
