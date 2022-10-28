@@ -44,7 +44,7 @@ Sabito is a realtime chat app, built with react, typescript, firebase and other 
 
 #
 
-![222](https://user-images.githubusercontent.com/71933266/198517753-d5b9ee0d-3d99-4518-bbbb-62e187b1c96b.png)
+![chat0](https://user-images.githubusercontent.com/71933266/198517753-d5b9ee0d-3d99-4518-bbbb-62e187b1c96b.png)
 
 #
 
@@ -52,7 +52,7 @@ Sabito is a realtime chat app, built with react, typescript, firebase and other 
 
 #
 
-![chat2](https://user-images.githubusercontent.com/71933266/198517302-b66221de-40a0-482b-b1f3-661e05d220dc.png)
+![chat2](https://user-images.githubusercontent.com/71933266/198518527-34e3fcb8-43c0-4167-a207-7ae96f07e4d7.jpg)
 
 #
 
