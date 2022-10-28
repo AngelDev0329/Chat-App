@@ -30,7 +30,7 @@ Sabito is a realtime chat app, built with react, typescript, firebase and other 
 
 
 ### 🛠️ - Main technologies 
-`React` &nbsp;`Firebase` &nbsp;`TypeScript` &nbsp;`Styled Components` &nbsp;`Framer Motion` &nbsp;`Playwright` &nbsp;`E2E Test` &nbsp;`Build tool: Vite` 
+`React` &nbsp;`Firebase` &nbsp;`TypeScript` &nbsp;`Styled Components` &nbsp;`Framer Motion` &nbsp;`Playwright` &nbsp;`E2E Test` &nbsp;`Vite` 
 
 <details>
 <summary><h3> 📸 - Demo Images </h3></summary>
