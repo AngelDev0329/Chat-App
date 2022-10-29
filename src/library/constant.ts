@@ -14,31 +14,31 @@ export const REACTIONS_UI: {
   }
 } = {
   Like: {
-    icon: '/public/reactions-icon/like.svg',
-    gif: '/public/reactions/like.gif',
+    icon: 'https://raw.githubusercontent.com/napthedev/fireverse/c1233e40a2c52b21690ee6dbaadeda7185a76b5f/public/reactions-icon/like.svg',
+    gif: 'https://raw.githubusercontent.com/napthedev/fireverse/master/public/reactions/like.gif',
   },
   Love: {
-    icon: '/public/reactions-icon/love.svg',
-    gif: '/public/reactions/love.gif',
+    icon: 'https://raw.githubusercontent.com/napthedev/fireverse/c1233e40a2c52b21690ee6dbaadeda7185a76b5f/public/reactions-icon/love.svg',
+    gif: 'https://raw.githubusercontent.com/napthedev/fireverse/master/public/reactions/love.gif',
   },
   Care: {
-    icon: '/public/reactions-icon/care.svg',
-    gif: '/public/reactions/care.gif',
+    icon: 'https://raw.githubusercontent.com/napthedev/fireverse/c1233e40a2c52b21690ee6dbaadeda7185a76b5f/public/reactions-icon/care.svg',
+    gif: 'https://raw.githubusercontent.com/napthedev/fireverse/master/public/reactions/care.gif',
   },
   Haha: {
-    icon: '/public/reactions-icon/haha.svg',
-    gif: '/public/reactions/haha.gif',
+    icon: 'https://raw.githubusercontent.com/napthedev/fireverse/c1233e40a2c52b21690ee6dbaadeda7185a76b5f/public/reactions-icon/haha.svg',
+    gif: 'https://raw.githubusercontent.com/napthedev/fireverse/master/public/reactions/haha.gif',
   },
   Wow: {
-    icon: '/public/reactions-icon/wow.svg',
-    gif: '/public/reactions/wow.gif',
+    icon: 'https://raw.githubusercontent.com/napthedev/fireverse/c1233e40a2c52b21690ee6dbaadeda7185a76b5f/public/reactions-icon/wow.svg',
+    gif: 'https://raw.githubusercontent.com/napthedev/fireverse/master/public/reactions/wow.gif',
   },
   Sad: {
-    icon: '/public/reactions-icon/sad.svg',
-    gif: '/public/reactions/sad.gif',
+    icon: 'https://raw.githubusercontent.com/napthedev/fireverse/c1233e40a2c52b21690ee6dbaadeda7185a76b5f/public/reactions-icon/sad.svg',
+    gif: 'https://raw.githubusercontent.com/napthedev/fireverse/master/public/reactions/sad.gif',
   },
   Angry: {
-    icon: '/public/reactions-icon/angry.svg',
-    gif: '/public/reactions/angry.gif',
+    icon: 'https://raw.githubusercontent.com/napthedev/fireverse/c1233e40a2c52b21690ee6dbaadeda7185a76b5f/public/reactions-icon/angry.svg',
+    gif: 'https://raw.githubusercontent.com/napthedev/fireverse/master/public/reactions/angry.gif',
   },
 }
