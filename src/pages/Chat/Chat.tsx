@@ -17,7 +17,6 @@ import { useUserStore } from '../../library'
 import { firebaseDb } from '../../library'
 import { ChatWrapper, Error, Text, Image, Wrapper, MobileHide } from './style'
 
-import ERROR_IMAGE from '/public/error.png'
 export function Chat() {
   const { id } = useParams()
   const { data, loading, error } = useDocumentQuery(
@@ -44,7 +43,10 @@ export function Chat() {
           error ||
           !conversation.users.includes(currentUser?.uid as string) ? (
           <Error>
-            <Image src={ERROR_IMAGE} alt="" />
+            <Image
+              src="https://cdn-icons-png.flaticon.com/512/763/763717.png"
+              alt=""
+            />
             <Text>Conversation does not exist.</Text>
           </Error>
         ) : (

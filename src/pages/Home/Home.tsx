@@ -6,7 +6,7 @@ export function Home() {
     <Wrapper>
       <Sidebar />
       <HomeWrapper>
-        <Image src="/public/cat.png" />
+        <Image src="https://cdn-icons-png.flaticon.com/512/763/763704.png" />
         <Text>Select a conversation to start chatting.</Text>
       </HomeWrapper>
     </Wrapper>

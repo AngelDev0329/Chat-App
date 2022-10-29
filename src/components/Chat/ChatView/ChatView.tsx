@@ -122,7 +122,10 @@ export const ChatView = ({
   if (error)
     return (
       <Grow>
-        <Image src="/public/error.png" alt="" />
+        <Image
+          src="https://cdn-icons-png.flaticon.com/512/763/763717.png"
+          alt=""
+        />
         <Text>Something went wrong</Text>
       </Grow>
     )
@@ -130,7 +133,10 @@ export const ChatView = ({
   if (data?.empty)
     return (
       <Grow>
-        <Image src="/public/write.png" alt="" />
+        <Image
+          src="https://cdn-icons-png.flaticon.com/512/763/763738.png"
+          alt=""
+        />
         <Text>No message recently. Start chatting now.</Text>
       </Grow>
     )
