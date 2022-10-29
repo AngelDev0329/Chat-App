@@ -1,6 +1,6 @@
 ### Sabito - Chat App  ⤵
  
-Sabito is a realtime chat app, built with react, typescript, firebase and other technologies. My inspiration came from [Whatsapp](https://web.whatsapp.com/) and [Messenger](https://www.messenger.com/). _Note: I need to add some tests before I'm finished. Therefore, the website is not available._
+Sabito is a realtime chat app, built with react, typescript, firebase and other technologies. My inspiration came from [Whatsapp](https://web.whatsapp.com/) and [Messenger](https://www.messenger.com/).
 
 ### 🚀 - Feautures
 
@@ -20,7 +20,7 @@ Sabito is a realtime chat app, built with react, typescript, firebase and other 
 - Change group name or group profile picture
  
 
-### 📚 - What I've learned so far... 
+### 📚 - What I've learned 
 
 - Focused a lot on the UX
 - Managing indexes in Firebase
@@ -30,7 +30,7 @@ Sabito is a realtime chat app, built with react, typescript, firebase and other 
 
 
 ### 🛠️ - Main technologies 
-`React` &nbsp;`Firebase` &nbsp;`TypeScript` &nbsp;`Styled Components` &nbsp;`Framer Motion` &nbsp;`Playwright` &nbsp;`E2E Test` &nbsp;`Vite` 
+`React` &nbsp;`Firebase` &nbsp;`TypeScript` &nbsp;`Styled Components` &nbsp;`Framer Motion` &nbsp;`Vite` 
 
 
 <details>
