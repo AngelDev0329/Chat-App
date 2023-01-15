@@ -9,6 +9,7 @@ export const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid ${theme.BorderHover};
+  background-color: ${theme.White};
 
   @media screen and (max-width: 768px) {
     padding: 0 15px;

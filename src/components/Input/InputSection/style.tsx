@@ -8,6 +8,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   border-top: 1px solid ${theme.Border};
+  background-color: ${theme.White};
 `
 
 export const Form = styled.form`
