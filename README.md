@@ -20,6 +20,7 @@ Sabito is a realtime chat app, built with react, typescript, firebase and other 
 - Change group name or group profile picture
  
 
+
 ### 📚 - What I've learned 
 
 - Focused a lot on the UX
