@@ -2,7 +2,7 @@
  
 Sabito is a realtime chat app, built with react, typescript, firebase and other technologies. My inspiration came from [Whatsapp](https://web.whatsapp.com/) and [Messenger](https://www.messenger.com/).
 
-### 🚀 - Feautures
+### 🚀 - Features
 
 - Sign in with Google 
 - Create conversations (private, group)
